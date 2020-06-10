@@ -5,7 +5,7 @@
     "cmake.generator": "Ninja",
     "cmake.autoRestartBuild" : true,
     "cmake.configureSettings": {
-        "CMAKE_MAKE_PROGRAM": "F:/Source/Repos/N64/tools/ninja.exe"
+        "CMAKE_MAKE_PROGRAM": "F:/Source/Repos/N64/cmake-demo-rom/tools/ninja.exe"
     },
     "cmake.cmakePath": "C:/Program Files/CMake/bin/cmake.exe",
     "cmake.configureOnOpen": false,

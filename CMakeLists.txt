@@ -23,10 +23,9 @@ project(BUILD-DEMO
 
 set(ELF_NAME ${PROJECT_NAME}.elf)
 set(BIN_NAME ${PROJECT_NAME}.bin)
-# set(MAP_NAME ${PROJECT_NAME}.map)
 set(ROM_NAME ${PROJECT_NAME}.v64)
 
-set(LINKER_FILE_NAME "${LIBDRAGON_PREFIX}/lib/n64ld.x")
+set(LINKER_FILE_NAME "${LIBDRAGON_PREFIX}/lib/n64ld_cpp.x") #for some reason it must use a C++ linker script (C only one doesnt work!)
 set(ROM_HEADER ${LIBDRAGON_PREFIX}/lib/header)
 
 
@@ -54,11 +53,10 @@ set_target_properties(${ELF_NAME} PROPERTIES LINK_FLAGS "-T ${LINKER_FILE_NAME}"
 #target_link_options(${ELF_NAME} INTERFACE -T ${LINKER_FILE_NAME})
 
 target_link_libraries( ${ELF_NAME} 
-	libdragon.a
-	libdragonsys.a
+	dragon
 	libc.a
 	libm.a
-	)
+	) # aparently just passing `dragon` should be enough here!
 
 
 add_custom_command(TARGET ${ELF_NAME}

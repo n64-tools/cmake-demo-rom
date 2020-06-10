@@ -22,8 +22,8 @@
         "settings": {
           "BUILD_VERSION" : "0.9.99.999",
           "CMAKE_TOOLCHAIN_FILE" : "CMake/toolchain.mips64-elf.cmake",
-          "TOOLCHAIN_PREFIX" : "F:/Source/Repos/N64/ED64/toolchain/gcc-toolchain-mips64",
-          "LIBDRAGON_PREFIX": "F:/Source/Repos/N64/ED64/toolchain/libdragon"
+          "TOOLCHAIN_PREFIX" : "F:/Source/Repos/N64/cmake-demo-rom/toolchain/gcc-toolchain-mips64",
+          "LIBDRAGON_PREFIX" : "F:/Source/Repos/N64/cmake-demo-rom/toolchain/libdragon"
         }
       }
     }

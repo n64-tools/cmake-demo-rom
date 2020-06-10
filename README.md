@@ -1,5 +1,5 @@
 # cmake-demo-rom
-ROM built with CMake (note, does not yet generate a ROM that works)
+Generates a ROM built with CMake
 
 Note: this is currently WiP for Windows 10 based dev environments.
 
@@ -7,7 +7,7 @@ Requires:
 * https://cmake.org/download/ to be installed
 * VSCode with `CMake`, `CMake Tools` and `C/C++` extensions
 
-* Run `UpdateToolchain.ps1` to download the required toolchain files
+* Run `UpdateToolchain.ps1` to download the required toolchain and libdragon files
 * Adjust cmake-variants.json for your paths
 * Adjust .vscode/settings.json for your paths
 
