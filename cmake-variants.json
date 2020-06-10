@@ -1,0 +1,31 @@
+{
+  "buildType": {
+    "default": "debug",
+      "choices": { 
+        "debug": {
+          "short": "Debug",
+          "long": "Emit debug information without performing optimizations",
+          "buildType": "Debug"
+        },
+        "release": {
+          "short": "release",
+          "long": "Optimize for smallest binary size",
+          "buildType": "Release"
+        }   
+      }
+  },
+  "linkage": {
+    "default": "",
+    "choices": {
+      "LIBDRAGON": {
+        "short": "LibDragon",
+        "settings": {
+          "BUILD_VERSION" : "0.9.99.999",
+          "CMAKE_TOOLCHAIN_FILE" : "CMake/toolchain.mips64-elf.cmake",
+          "TOOLCHAIN_PREFIX" : "F:/Source/Repos/N64/ED64/toolchain/gcc-toolchain-mips64",
+          "LIBDRAGON_PREFIX": "F:/Source/Repos/N64/ED64/toolchain/libdragon"
+        }
+      }
+    }
+  }
+}
