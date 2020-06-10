@@ -1,3 +1,5 @@
+option(TOOLCHAIN_LIBDRAGON "Use LIBDRAGON" ON) #only set if this file is called~?
+
 include_directories(
 	${LIBDRAGON_PREFIX}/include
 )
@@ -11,8 +13,8 @@ link_libraries(
 )
 
 # set the necessary tools we need for building the rom
-set(N64_TOOL	       	${LIBDRAGON_PREFIX}/tools/n64tool) #TODO - Should be part of the libdragon cmake
-set(CHECKSUM_TOOL       ${LIBDRAGON_PREFIX}/tools/chksum64) #TODO - Should be part of the libdragon cmake
+set(N64_TOOL	       	${LIBDRAGON_PREFIX}/tools/n64tool)
+set(CHECKSUM_TOOL       ${LIBDRAGON_PREFIX}/tools/chksum64)
 
 set(LINKER_FLAGS_START		"-ldragon")
 set(LINKER_FLAGS_END		"-ldragonsys")

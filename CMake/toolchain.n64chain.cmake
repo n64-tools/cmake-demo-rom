@@ -1,4 +1,5 @@
 # TODO: this file is incomplete!!!!
+option(TOOLCHAIN_N64CHAIN "Use N64CHAIN" ON) #only set if this file is called~?
 
 
 include_directories(
@@ -14,8 +15,7 @@ link_directories(
 # )
 
 # set the necessary tools we need for building the rom
-# set(N64_TOOL	       	${N64CHAIN_PREFIX}/tools/n64tool) #TODO - Should be part of the libdragon cmake
-set(CHECKSUM_TOOL       ${N64CHAIN_PREFIX}/tools/checksum) #TODO - Should be part of the libdragon cmake
+set(CHECKSUM_TOOL       ${N64CHAIN_PREFIX}/tools/checksum)
 
 # set(LINKER_FLAGS_START		"-ldragon")
 # set(LINKER_FLAGS_END		"-ldragonsys")
