@@ -50,6 +50,7 @@ add_custom_command(TARGET ${ELF_NAME}
 
 #if the toolchain is different, we need to handle it here, or push it to a module, or even the toolchain?!	
 if(TOOLCHAIN_LIBDRAGON)
+
 	add_custom_command(TARGET ${ELF_NAME}
 					POST_BUILD #Make sure your ROM size is big enough... perhaps we could use "size" on the bin to check?
 					COMMAND ${N64_TOOL} ARGS -l 1M -t "${PROJECT_NAME}" -h ${ROM_HEADER} -o ${ROM_NAME} ${BIN_NAME} 
@@ -60,7 +61,14 @@ if(TOOLCHAIN_LIBDRAGON)
 					COMMAND ${CHECKSUM_TOOL} ARGS ${ROM_NAME}
 					)
 
-else()
-	#add some other compilation flags
+elseif(TOOLCHAIN_N64CHAIN)
+
+	add_custom_command(TARGET ${ELF_NAME}
+					POST_BUILD
+					COMMAND ${CHECKSUM_TOOL} ARGS ${ROM_HEADER}
+					)
+
+else() #add some other compilation flags
+#show error?
 endif(TOOLCHAIN_LIBDRAGON)
 unset(TOOLCHAIN_LIBDRAGON CACHE) # <---- this is the important to make sure the next build succeeds!!

@@ -15,7 +15,8 @@ link_directories(
 # )
 
 # set the necessary tools we need for building the rom
-set(CHECKSUM_TOOL       ${N64CHAIN_PREFIX}/tools/checksum)
+set(CHECKSUM_TOOL       ${N64CHAIN_PREFIX}/tools/bin/checksum)
+set(RSPASM_TOOL       ${N64CHAIN_PREFIX}/tools/bin/rspasm)
 
 # set(LINKER_FLAGS_START		"-ldragon")
 # set(LINKER_FLAGS_END		"-ldragonsys")
