@@ -37,6 +37,24 @@ if(NOT CMAKE_ASM_COMPILER)
     SET_COMPILER_VAR(ASM-ATT_COMPILER as)
 endif()
 
+# set the necessary tools we need for building the rom
+set(N64_TOOL	       	${LIBDRAGON_PREFIX}/tools/n64tool) #TODO - Should be part of the libdragon cmake
+set(CHECKSUM_TOOL       ${LIBDRAGON_PREFIX}/tools/chksum64) #TODO - Should be part of the libdragon cmake
+
+include_directories( ${ELF_NAME}
+	PUBLIC
+	${LIBDRAGON_PREFIX}/include #TODO - Should be part of the libdragon cmake
+	${TOOLCHAIN_PREFIX}/mips64-elf/include
+	${TOOLCHAIN_PREFIX}/include
+)
+
+link_directories( ${ELF_NAME}
+	PUBLIC
+	${LIBDRAGON_PREFIX}/lib/ #TODO - Should be part of the libdragon cmake
+	${TOOLCHAIN_LIB_DIR}
+	${TOOLCHAIN_PREFIX}/mips64-elf/lib
+)
+
 set(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM NEVER)
 set(CMAKE_FIND_ROOT_PATH_MODE_LIBRARY ONLY)
 set(CMAKE_FIND_ROOT_PATH_MODE_INCLUDE ONLY)
