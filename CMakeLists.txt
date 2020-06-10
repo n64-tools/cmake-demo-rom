@@ -10,8 +10,8 @@ set(CMAKE_DISABLE_SOURCE_CHANGES ON)
 set(CMAKE_DISABLE_IN_SOURCE_BUILD ON)
 
 
-project(BUILD-DEMO 
-		VERSION "1.0"
+project(BUILD-DEMO #rename for your ROM name
+		VERSION ${BUILD_VERSION}
 		LANGUAGES C ASM)
 
 
@@ -42,13 +42,6 @@ target_link_directories( ${ELF_NAME}
 
 set_target_properties( ${ELF_NAME} 
 	PROPERTIES LINK_FLAGS "-T ${LINKER_FILE_NAME}") 
-
-target_link_libraries( ${ELF_NAME} 
-	dragon
-	libc.a
-	libm.a
-	)
-
 
 add_custom_command(TARGET ${ELF_NAME}
                   POST_BUILD

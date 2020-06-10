@@ -2,7 +2,6 @@ include(CMakeForceCompiler)
 
 # set toolchain directories
 set(TOOLCHAIN_BIN_DIR ${TOOLCHAIN_PREFIX}/bin)
-set(TOOLCHAIN_LIB_DIR ${TOOLCHAIN_PREFIX}/lib)
 
 # the name of the operating system for which CMake is to build
 set(CMAKE_SYSTEM_NAME Generic)
@@ -37,23 +36,20 @@ if(NOT CMAKE_ASM_COMPILER)
     SET_COMPILER_VAR(ASM-ATT_COMPILER as)
 endif()
 
-# set the necessary tools we need for building the rom
-set(N64_TOOL	       	${LIBDRAGON_PREFIX}/tools/n64tool) #TODO - Should be part of the libdragon cmake
-set(CHECKSUM_TOOL       ${LIBDRAGON_PREFIX}/tools/chksum64) #TODO - Should be part of the libdragon cmake
-
-include_directories( ${ELF_NAME}
-	PUBLIC
-	${LIBDRAGON_PREFIX}/include #TODO - Should be part of the libdragon cmake
+include_directories(
 	${TOOLCHAIN_PREFIX}/mips64-elf/include
 	${TOOLCHAIN_PREFIX}/include
 )
 
-link_directories( ${ELF_NAME}
-	PUBLIC
-	${LIBDRAGON_PREFIX}/lib/ #TODO - Should be part of the libdragon cmake
-	${TOOLCHAIN_LIB_DIR}
+link_directories(
+	${TOOLCHAIN_PREFIX}/lib
 	${TOOLCHAIN_PREFIX}/mips64-elf/lib
 )
+
+link_libraries(
+	libc.a
+	libm.a
+	)
 
 set(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM NEVER)
 set(CMAKE_FIND_ROOT_PATH_MODE_LIBRARY ONLY)
@@ -82,4 +78,4 @@ set(CMAKE_ASM_FLAGS "${MCPU_FLAGS}" CACHE INTERNAL "asm compiler flags")
 set(CMAKE_ASM_FLAGS_DEBUG   "" )
 set(CMAKE_ASM_FLAGS_RELEASE "" )
 
-set(CMAKE_EXE_LINKER_FLAGS "-G0 -ldragon -lc -lm -ldragonsys" CACHE INTERNAL "exe link flags")
+set(CMAKE_EXE_LINKER_FLAGS "-G0 ${LINKER_FLAGS_START} -lc -lm ${LINKER_FLAGS_END}" CACHE INTERNAL "exe link flags")
