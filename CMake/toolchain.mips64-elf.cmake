@@ -63,7 +63,7 @@ set(CMAKE_TRY_COMPILE_TARGET_TYPE STATIC_LIBRARY)
 set(MCPU_FLAGS "-march=vr4300 -mtune=vr4300")
 
 set(CMAKE_C_CXX_FLAGS "${MCPU_FLAGS} -mno-long-calls -Wall -Wno-pointer-sign")
-set(CMAKE_C_CXX_FLAGS_DEBUG   "-O0") # future: -Og -g -ggdb3
+set(CMAKE_C_CXX_FLAGS_DEBUG   "-O0 -g -ggdb3")
 set(CMAKE_C_CXX_FLAGS_RELEASE "-O2") 
 
 set(CMAKE_C_FLAGS "${CMAKE_C_CXX_FLAGS}" CACHE INTERNAL "c compiler flags")
