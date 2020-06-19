@@ -1,0 +1,22 @@
+cmake_minimum_required(VERSION 3.15)
+
+project(LibDragon-download NONE)
+
+include(ExternalProject)
+
+# download LibDragon source from N64-Tools git repo
+ExternalProject_Add( 
+    LibDragon
+    PREFIX LibDragon
+    SOURCE_DIR ${CMAKE_BINARY_DIR}/LibDragon_Source
+    GIT_REPOSITORY https://github.com/n64-tools/libdragon.git
+    GIT_TAG ${LIBDRAGON_VERSION_TAG}  # target specified branch
+    GIT_SHALLOW 1   # download only the tip of the branch, not the complete history
+    TIMEOUT 10
+    LOG_DOWNLOAD 1
+    INSTALL_COMMAND ""
+
+    # Disable all other steps
+    CONFIGURE_COMMAND ""
+    BUILD_COMMAND ""
+)
