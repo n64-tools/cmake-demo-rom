@@ -5,6 +5,9 @@
 #include <stdint.h>
 #include <libdragon.h>
 
+#include "version.h"
+#include "flashcart.h"
+
 /* hardware definitions */
 // Pad buttons
 #define A_BUTTON(a)     ((a) & 0x8000)
