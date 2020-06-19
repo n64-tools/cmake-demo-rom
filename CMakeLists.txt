@@ -51,7 +51,15 @@ target_compile_definitions( ${ELF_NAME} PUBLIC
 
 target_sources( ${ELF_NAME}
 PUBLIC
-	${CMAKE_CURRENT_LIST_DIR}/src/main.c
+	${CMAKE_CURRENT_LIST_DIR}/src/240pSuite.c
+	${CMAKE_CURRENT_LIST_DIR}/src/controller.c
+	${CMAKE_CURRENT_LIST_DIR}/src/help.c
+	${CMAKE_CURRENT_LIST_DIR}/src/image.c
+	${CMAKE_CURRENT_LIST_DIR}/src/menu.c
+	${CMAKE_CURRENT_LIST_DIR}/src/patterns.c
+	${CMAKE_CURRENT_LIST_DIR}/src/tests.c
+	${CMAKE_CURRENT_LIST_DIR}/src/utils.c
+	${CMAKE_CURRENT_LIST_DIR}/src/video.c
 )
 
 #probably a better way to do this, but if you need to build for something that uses different compiler flags...
@@ -82,22 +90,33 @@ add_custom_command(TARGET ${ELF_NAME}
 				  #if the toolchain is different, we need to handle it here, or push it to a module, or even the toolchain?!
 if(TOOLCHAIN_LIBDRAGON)
 
+# $(PROG_NAME).z64: bitmaps $(PROG_NAME).elf drive.dfs
+# 	$(OBJCOPY) $(PROG_NAME).elf $(PROG_NAME).bin -O binary
+# 	rm -f $(PROG_NAME).z64
+# 	$(N64TOOL) -l 6M -t "240p Test Suite" -h $(HEADER) -o $(PROG_NAME).z64 $(PROG_NAME).bin -s 1M drive.dfs
+# 	$(CHKSUM64) $(PROG_NAME).z64
+
 add_custom_command(TARGET ${ELF_NAME}
                   POST_BUILD #Make sure your ROM size is big enough... perhaps we could use "size" on the bin to check?
-                  COMMAND ${N64_TOOL} ARGS -l 1M -t "${PROJECT_NAME}" -h ${ROM_HEADER} -o ${ROM_NAME} ${BIN_NAME}
+                  COMMAND ${N64_TOOL} ARGS -l 6M -t "${PROJECT_NAME}" -h ${ROM_HEADER} -o ${ROM_NAME} ${BIN_NAME} -s 1M drive.dfs
 				  )
 				  
 add_custom_command(TARGET ${ELF_NAME}
                   POST_BUILD
                   COMMAND ${CHECKSUM_TOOL} ARGS ${ROM_NAME}
 				  )
-				  
-				  elseif(TOOLCHAIN_N64CHAIN)
 
-				  add_custom_command(TARGET ${ELF_NAME}
-								  POST_BUILD
-								  COMMAND ${CHECKSUM_TOOL} ARGS ${ROM_HEADER}
-								  )
+add_custom_command(TARGET ${ELF_NAME}
+                  POST_BUILD
+                  COMMAND ${MKDFS_TOOL} ARGS drive.dfs ${CMAKE_CURRENT_LIST_DIR}/filesystem/
+				  )
+				  
+elseif(TOOLCHAIN_N64CHAIN)
+
+add_custom_command(TARGET ${ELF_NAME}
+	POST_BUILD
+	COMMAND ${CHECKSUM_TOOL} ARGS ${ROM_HEADER}
+	)
 			  
 else() #add some other compilation flags
 #show error?
