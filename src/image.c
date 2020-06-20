@@ -123,7 +123,7 @@ void SoftDrawImageSolid(int x, int y, sprite_t *image)
 
 void red_createflags()
 {
-	uint32_t flag1;
+	volatile uint32_t flag1; //TODO: added volatile as not sure whether this is actually needed!
 	//int32_t flag2;
 	
 	// 0xEFA000FF 
