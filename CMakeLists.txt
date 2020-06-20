@@ -66,50 +66,50 @@ PUBLIC
 )
 
 set( SPRITE_LIST_16 
-	../res/filesystem/back
-	../res/filesystem/sd
-	../res/filesystem/motoko
-	../res/filesystem/shadow
-	../res/filesystem/buzzbomber
-	../res/filesystem/checkpos
-	../res/filesystem/checkneg
-	../res/filesystem/pluge
-	../res/filesystem/color
-	../res/filesystem/grid
-	../res/filesystem/grid480
-	../res/filesystem/menu
-	../res/filesystem/help
-	../res/filesystem/601701cb
-	../res/filesystem/sharpness
-	../res/filesystem/grayramp
-	../res/filesystem/SMPTECB75
-	../res/filesystem/SMPTECB100
-	../res/filesystem/nish
-	../res/filesystem/EBUColorBars75
-	../res/filesystem/EBUColorBars100
-	../res/filesystem/PLUGEBorder
-	../res/filesystem/plugePAL
-	../res/filesystem/colorbleedchk
-	../res/filesystem/colorbleed
-	../res/filesystem/stripespos
-	../res/filesystem/stripesneg
-	../res/filesystem/vertstripespos
-	../res/filesystem/vertstripesneg
-	../res/filesystem/circles_grid
-	../res/filesystem/circlesNTSC
-	../res/filesystem/circlesPAL
-	../res/filesystem/sonicback1
-	../res/filesystem/sonicback2
-	../res/filesystem/sonicback3
-	../res/filesystem/sonicback4
-	../res/filesystem/sonicfloor
-	../res/filesystem/font
+	back
+	sd
+	motoko
+	shadow
+	buzzbomber
+	checkpos
+	checkneg
+	pluge
+	color
+	grid
+	grid480
+	menu
+	help
+	601701cb
+	sharpness
+	grayramp
+	SMPTECB75
+	SMPTECB100
+	nish
+	EBUColorBars75
+	EBUColorBars100
+	PLUGEBorder
+	plugePAL
+	colorbleedchk
+	colorbleed
+	stripespos
+	stripesneg
+	vertstripespos
+	vertstripesneg
+	circles_grid
+	circlesNTSC
+	circlesPAL
+	sonicback1
+	sonicback2
+	sonicback3
+	sonicback4
+	sonicfloor
+	font
 )
 
 set( SPRITE_LIST_32
-	../res/filesystem/color_grid
-	../res/filesystem/colorlow
-	../res/filesystem/colorhigh
+	color_grid
+	colorlow
+	colorhigh
 )
 
 #probably a better way to do this, but if you need to build for something that uses different compiler flags...
@@ -143,14 +143,14 @@ if(TOOLCHAIN_LIBDRAGON)
 foreach( file_i ${SPRITE_LIST_16}) #need to loop through the files!
 add_custom_command(TARGET ${ELF_NAME}
                   PRE_LINK
-                  COMMAND ${MKSPRITE_TOOL} ARGS ${BITDEPTH_16} ${file_i}.png ${file_i}.bin
+                  COMMAND ${MKSPRITE_TOOL} ARGS ${BITDEPTH_16} ../res/graphics/${file_i}.png ../res/filesystem/${file_i}.bin
 				  )
 endforeach( file_i )
 
 foreach( file_i ${SPRITE_LIST_32}) #need to loop through the files!
 add_custom_command(TARGET ${ELF_NAME}
                   PRE_LINK
-                  COMMAND ${MKSPRITE_TOOL} ARGS ${BITDEPTH_32} ${file_i}.png ${file_i}.bin
+                  COMMAND ${MKSPRITE_TOOL} ARGS ${BITDEPTH_32} ../res/graphics/${file_i}.png ../res/filesystem/${file_i}.bin
 				  )
 endforeach( file_i )
 
