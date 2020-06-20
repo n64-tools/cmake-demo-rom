@@ -19,6 +19,7 @@ project(BUILD-DEMO #rename for your ROM name
 set( ELF_NAME 			${PROJECT_NAME}.elf )
 set( BIN_NAME 			${PROJECT_NAME}.bin )
 set( ROM_NAME 			${PROJECT_NAME}.v64 )
+set( FILESYS_NAME		${PROJECT_NAME}.dfs )
 
 set( LINKER_FILE_NAME "${LIBDRAGON_PREFIX}/lib/n64.ld" )
 set(ROM_HEADER ${LIBDRAGON_PREFIX}/lib/header)
@@ -87,28 +88,23 @@ add_custom_command(TARGET ${ELF_NAME}
                   COMMAND ${CMAKE_OBJCOPY} ARGS -O binary ${ELF_NAME} ${BIN_NAME}
 				  )
 					  
-				  #if the toolchain is different, we need to handle it here, or push it to a module, or even the toolchain?!
+#if the toolchain is different, we need to handle it here, or push it to a module, or even the toolchain?!
 if(TOOLCHAIN_LIBDRAGON)
 
-# $(PROG_NAME).z64: bitmaps $(PROG_NAME).elf drive.dfs
-# 	$(OBJCOPY) $(PROG_NAME).elf $(PROG_NAME).bin -O binary
-# 	rm -f $(PROG_NAME).z64
-# 	$(N64TOOL) -l 6M -t "240p Test Suite" -h $(HEADER) -o $(PROG_NAME).z64 $(PROG_NAME).bin -s 1M drive.dfs
-# 	$(CHKSUM64) $(PROG_NAME).z64
+
+add_custom_command(TARGET ${ELF_NAME}
+                  PRE_LINK
+                  COMMAND ${MKDFS_TOOL} ARGS ${FILESYS_NAME} ${CMAKE_CURRENT_LIST_DIR}/res/filesystem/
+				  )
 
 add_custom_command(TARGET ${ELF_NAME}
                   POST_BUILD #Make sure your ROM size is big enough... perhaps we could use "size" on the bin to check?
-                  COMMAND ${N64_TOOL} ARGS -l 6M -t "${PROJECT_NAME}" -h ${ROM_HEADER} -o ${ROM_NAME} ${BIN_NAME} -s 1M drive.dfs
+                  COMMAND ${N64_TOOL} ARGS -l 6M -t "${PROJECT_NAME}" -h ${ROM_HEADER} -o ${ROM_NAME} ${BIN_NAME} -s 1M ${FILESYS_NAME}
 				  )
-				  
+		
 add_custom_command(TARGET ${ELF_NAME}
                   POST_BUILD
                   COMMAND ${CHECKSUM_TOOL} ARGS ${ROM_NAME}
-				  )
-
-add_custom_command(TARGET ${ELF_NAME}
-                  POST_BUILD
-                  COMMAND ${MKDFS_TOOL} ARGS drive.dfs ${CMAKE_CURRENT_LIST_DIR}/filesystem/
 				  )
 				  
 elseif(TOOLCHAIN_N64CHAIN)
