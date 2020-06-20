@@ -34,7 +34,8 @@ list(GET VERSION_LIST 0 BUILD_VER_MAJOR)
 list(GET VERSION_LIST 1 BUILD_VER_MINOR)
 list(GET VERSION_LIST 2 BUILD_VER_REV)
 
-
+set (BITDEPTH_16 16)
+set (BITDEPTH_32 32)
 
 add_executable( ${ELF_NAME}
 #Add libs here:
@@ -43,11 +44,12 @@ add_executable( ${ELF_NAME}
 )
 
 target_compile_definitions( ${ELF_NAME} PUBLIC
-	ROM_VER_MAJOR=${BUILD_VER_MAJOR}
-	ROM_VER_MINOR=${BUILD_VER_MINOR}
-	ROM_VER_REV=${BUILD_VER_REV}
-	FLASHCART_TARGET_TYPE=${HARDWARE_TYPE}
-	FLASHCART_TARGET_REVISION=${HARDWARE_REVISION}
+	#ROM_VER_MAJOR=${BUILD_VER_MAJOR}
+	#ROM_VER_MINOR=${BUILD_VER_MINOR}
+	#ROM_VER_REV=${BUILD_VER_REV}
+	#FLASHCART_TARGET_TYPE=${HARDWARE_TYPE}
+	#FLASHCART_TARGET_REVISION=${HARDWARE_REVISION}
+	USE_N64MEM
 )
 
 target_sources( ${ELF_NAME}
@@ -61,6 +63,53 @@ PUBLIC
 	${CMAKE_CURRENT_LIST_DIR}/src/tests.c
 	${CMAKE_CURRENT_LIST_DIR}/src/utils.c
 	${CMAKE_CURRENT_LIST_DIR}/src/video.c
+)
+
+set( SPRITE_LIST_16 
+	../res/filesystem/back
+	../res/filesystem/sd
+	../res/filesystem/motoko
+	../res/filesystem/shadow
+	../res/filesystem/buzzbomber
+	../res/filesystem/checkpos
+	../res/filesystem/checkneg
+	../res/filesystem/pluge
+	../res/filesystem/color
+	../res/filesystem/grid
+	../res/filesystem/grid480
+	../res/filesystem/menu
+	../res/filesystem/help
+	../res/filesystem/601701cb
+	../res/filesystem/sharpness
+	../res/filesystem/grayramp
+	../res/filesystem/SMPTECB75
+	../res/filesystem/SMPTECB100
+	../res/filesystem/nish
+	../res/filesystem/EBUColorBars75
+	../res/filesystem/EBUColorBars100
+	../res/filesystem/PLUGEBorder
+	../res/filesystem/plugePAL
+	../res/filesystem/colorbleedchk
+	../res/filesystem/colorbleed
+	../res/filesystem/stripespos
+	../res/filesystem/stripesneg
+	../res/filesystem/vertstripespos
+	../res/filesystem/vertstripesneg
+	../res/filesystem/circles_grid
+	../res/filesystem/circlesNTSC
+	../res/filesystem/circlesPAL
+	../res/filesystem/sonicback1
+	../res/filesystem/sonicback2
+	../res/filesystem/sonicback3
+	../res/filesystem/sonicback4
+	../res/filesystem/sonicfloor
+	../res/filesystem/font
+)
+
+set( SPRITE_LIST_32
+	../res/filesystem/color_grid
+	../res/filesystem/colorlow
+	../res/filesystem/colorhigh
 )
 
 #probably a better way to do this, but if you need to build for something that uses different compiler flags...
@@ -91,10 +140,23 @@ add_custom_command(TARGET ${ELF_NAME}
 #if the toolchain is different, we need to handle it here, or push it to a module, or even the toolchain?!
 if(TOOLCHAIN_LIBDRAGON)
 
+foreach( file_i ${SPRITE_LIST_16}) #need to loop through the files!
+add_custom_command(TARGET ${ELF_NAME}
+                  PRE_LINK
+                  COMMAND ${MKSPRITE_TOOL} ARGS ${BITDEPTH_16} ${file_i}.png ${file_i}.bin
+				  )
+endforeach( file_i )
+
+foreach( file_i ${SPRITE_LIST_32}) #need to loop through the files!
+add_custom_command(TARGET ${ELF_NAME}
+                  PRE_LINK
+                  COMMAND ${MKSPRITE_TOOL} ARGS ${BITDEPTH_32} ${file_i}.png ${file_i}.bin
+				  )
+endforeach( file_i )
 
 add_custom_command(TARGET ${ELF_NAME}
                   PRE_LINK
-                  COMMAND ${MKDFS_TOOL} ARGS ${FILESYS_NAME} ${CMAKE_CURRENT_LIST_DIR}/res/filesystem/
+                  COMMAND ${MKDFS_TOOL} ARGS ${FILESYS_NAME} ../res/filesystem/
 				  )
 
 add_custom_command(TARGET ${ELF_NAME}
