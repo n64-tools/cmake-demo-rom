@@ -49,7 +49,7 @@ target_compile_definitions( ${ELF_NAME} PUBLIC
 	#ROM_VER_REV=${BUILD_VER_REV}
 	#FLASHCART_TARGET_TYPE=${HARDWARE_TYPE}
 	#FLASHCART_TARGET_REVISION=${HARDWARE_REVISION}
-	USE_N64MEM
+	#USE_N64MEM
 )
 
 target_sources( ${ELF_NAME}
@@ -65,45 +65,45 @@ PUBLIC
 	${CMAKE_CURRENT_LIST_DIR}/src/video.c
 )
 
-set( SPRITE_LIST_16 
-	back
-	sd
-	motoko
-	shadow
-	buzzbomber
-	checkpos
-	checkneg
-	pluge
-	color
-	grid
-	grid480
-	menu
-	help
+set( SPRITE_LIST_16
 	601701cb
-	sharpness
-	grayramp
-	SMPTECB75
-	SMPTECB100
-	nish
-	EBUColorBars75
-	EBUColorBars100
-	PLUGEBorder
-	plugePAL
-	colorbleedchk
-	colorbleed
-	stripespos
-	stripesneg
-	vertstripespos
-	vertstripesneg
+	back
+	buzzbomber
+	checkneg
+	checkpos
 	circles_grid
 	circlesNTSC
 	circlesPAL
+	color
+	colorbleed
+	colorbleedchk
+	EBUColorBars75
+	EBUColorBars100
+	#font #missing!
+	grayramp
+	grid
+	grid480
+	help
+	menu
+	motoko
+	nish
+	pluge
+	PLUGEBorder
+	plugePAL
+	sd
+	shadow
+	sharpness
+	SMPTECB75
+	SMPTECB100
 	sonicback1
 	sonicback2
 	sonicback3
 	sonicback4
 	sonicfloor
-	font
+	stripespos
+	stripesneg
+	vertstripespos
+	vertstripesneg
 )
 
 set( SPRITE_LIST_32
@@ -134,7 +134,7 @@ set_target_properties( ${ELF_NAME}
 
 add_custom_command(TARGET ${ELF_NAME}
                   POST_BUILD
-                  COMMAND ${CMAKE_OBJCOPY} ARGS -O binary ${ELF_NAME} ${BIN_NAME}
+				  COMMAND ${CMAKE_OBJCOPY} ARGS -O binary ${ELF_NAME} ${BIN_NAME}
 				  )
 					  
 #if the toolchain is different, we need to handle it here, or push it to a module, or even the toolchain?!
@@ -142,15 +142,15 @@ if(TOOLCHAIN_LIBDRAGON)
 
 foreach( file_i ${SPRITE_LIST_16}) #need to loop through the files!
 add_custom_command(TARGET ${ELF_NAME}
-                  PRE_LINK
-                  COMMAND ${MKSPRITE_TOOL} ARGS ${BITDEPTH_16} ../res/graphics/${file_i}.png ../res/filesystem/${file_i}.bin
+                  PRE_BUILD
+				  COMMAND ${MKSPRITE_TOOL} ARGS ${BITDEPTH_16} ../res/graphics/${file_i}.png ../res/filesystem/${file_i}.bin
 				  )
 endforeach( file_i )
 
 foreach( file_i ${SPRITE_LIST_32}) #need to loop through the files!
 add_custom_command(TARGET ${ELF_NAME}
-                  PRE_LINK
-                  COMMAND ${MKSPRITE_TOOL} ARGS ${BITDEPTH_32} ../res/graphics/${file_i}.png ../res/filesystem/${file_i}.bin
+                  PRE_BUILD
+				  COMMAND ${MKSPRITE_TOOL} ARGS ${BITDEPTH_32} ../res/graphics/${file_i}.png ../res/filesystem/${file_i}.bin
 				  )
 endforeach( file_i )
 
@@ -161,7 +161,7 @@ add_custom_command(TARGET ${ELF_NAME}
 
 add_custom_command(TARGET ${ELF_NAME}
                   POST_BUILD #Make sure your ROM size is big enough... perhaps we could use "size" on the bin to check?
-                  COMMAND ${N64_TOOL} ARGS -l 6M -t "${PROJECT_NAME}" -h ${ROM_HEADER} -o ${ROM_NAME} ${BIN_NAME} -s 1M ${FILESYS_NAME}
+                  COMMAND ${N64_TOOL} ARGS -l 6M -t "${PROJECT_NAME}" -h ${ROM_HEADER} -o ${ROM_NAME} ${BIN_NAME} -s 4M ${FILESYS_NAME}
 				  )
 		
 add_custom_command(TARGET ${ELF_NAME}
