@@ -97,7 +97,7 @@ void DrawStringB(int x, int y, int r, int g, int b, char *str)
 	graphics_draw_text(__dc, x, y, str);
 }
 
-int DetectRamSize()
+int DetectRamSize() //TODO: now supported by libdragon?!
 {
 	int available_memory_size = *(int *)(0x80000318);
 

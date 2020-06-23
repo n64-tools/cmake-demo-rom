@@ -341,7 +341,7 @@ void DrawCredits(int usebuffer)
 		rdp_end();  
 		
         DrawStringS(x, y, 0x00, 0xff, 0x00, "Code and Patterns:"); y += fh; 
-        DrawStringS(x, y, 0xff, 0xff, 0xff, "Artemio Urbina"); y += fh; 
+        DrawStringS(x, y, 0xff, 0xff, 0xff, "Artemio Urbina & Robin Jones"); y += fh; 
 
 		if(counter == 1)
 			sprintf(data, "aurbina@junkerhq.net");			
@@ -354,7 +354,7 @@ void DrawCredits(int usebuffer)
 		DrawStringS(x+5, y, 0xff, 0xff, 0xff, data); y += fh; 
 
 		DrawStringS(x, y, 0x00, 0xff, 0x00, "SDK:"); y += fh; 
-		DrawStringS(x+5, y, 0xff, 0xff, 0xff, "libdragon"); y += fh; 	
+		DrawStringS(x+5, y, 0xff, 0xff, 0xff, "github.com/N64-Tools/libdragon"); y += fh; 	
 		DrawStringS(x, y, 0x00, 0xff, 0x00, "Menu Pixel Art:"); y += fh; 
 		DrawStringS(x+5, y, 0xff, 0xff, 0xff, "Asher"); y += fh; 		
 		DrawStringS(x, y, 0x00, 0xff, 0x00, "Advisor:"); y += fh; 

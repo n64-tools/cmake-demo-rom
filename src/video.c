@@ -157,11 +157,11 @@ void GetDisplay()
 	ClearScreen();
 }
 
-int isNTSC()
+int isNTSC() //TODO: this still seems to be insufficent on PAL consoles
 {
 	int tv; 
 	
-	tv = *(int *) 0x80000300;
+	tv = *(unsigned int *) 0x80000300;
 	return tv;
 }
 
