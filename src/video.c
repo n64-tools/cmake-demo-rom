@@ -121,6 +121,14 @@ void set_video()
 			dW = 512;
 			dH = 480;
 			break;
+		case RESOLUTION_512x240: /* high-res progressive */
+			dW = 512;
+			dH = 240;
+			break;
+		case RESOLUTION_640x240: /* high-res progressive */
+			dW = 640;
+			dH = 240;
+			break;
 	}
 	
 	if(current_bitdepth == DEPTH_16_BPP)
@@ -187,6 +195,12 @@ void GetVideoModeStr(char *res, int shortdesc)
 			case RESOLUTION_512x480:
 				sprintf(res, "Video: 512x480");
 				break;
+			case RESOLUTION_512x240:
+				sprintf(res, "Video: 512x240p");
+				break;
+			case RESOLUTION_640x240:
+				sprintf(res, "Video: 640x240p");
+				break;
 		}
 	}
 	else
@@ -204,6 +218,12 @@ void GetVideoModeStr(char *res, int shortdesc)
 				break;
 			case RESOLUTION_512x480:
 				sprintf(res, "[512]");
+				break;
+			case RESOLUTION_512x240:
+				sprintf(res, "[512hp]");
+				break;
+			case RESOLUTION_640x240:
+				sprintf(res, "[640hp]");
 				break;
 		}
 
