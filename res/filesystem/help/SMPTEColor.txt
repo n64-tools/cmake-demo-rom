@@ -2,13 +2,13 @@
 
 This pattern can be used to calibrate for NTSC
 levels regarding contrast and brightness, and 
-appropiate colors as well. 
+appropriate colors as well. 
 
 You can toggle between 75% and 100% SMPTE color 
 bars by pressing #GA#G.
 
 When in PAL this pattern shows the #YEBU#Y color
-bars intead, since setup starts at 0mV.
+bars instead, since setup starts at 0mV.
 
 Remember that the black level in the SMPTE pattern
 refers to 7.5 IRE for video, console games usually

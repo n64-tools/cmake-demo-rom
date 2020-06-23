@@ -26,7 +26,7 @@ modes start at line 22 of every field.
  #G480i scaled 240p assets (NTSC):#G This displays
     the 240p patterns in 480i mode. It uses the 
     480 visible lines, 240 in each field. The 
-    whole content of the suite is linedoubled in 
+    whole content of the suite is line doubled in 
     this mode.
 
                                    #C(cont...)#C
@@ -108,7 +108,7 @@ field, as the PAL standard determines. (23 in #GGC#G)
  #G576i scaled 264/240p assets (PAL):#G This displays
     the 264p patterns in 576i mode. It uses the 
     528 visible lines, 264 in each field. The 
-    whole content of the suite is linedoubled in 
+    whole content of the suite is line doubled in 
     this mode.                     #C(cont...)#C
                 VIDEO MODES (8/10)
 
@@ -138,7 +138,7 @@ patterns will be too soft or not resolve properly.
 
  #G480p scaled 240p assets & scanlines:#G  This 
     displays the 240p patterns in 480p. The whole
-    content of the suite is linedoubled, and 
+    content of the suite is line doubled, and 
     scanline parameters can be modified from the 
     #GOptions#G menu, they can also be completely
     disabled if needed.            #C(cont...)#C

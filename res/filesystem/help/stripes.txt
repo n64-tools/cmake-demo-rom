@@ -24,7 +24,7 @@ pressing button #GCR#G.
 
 You can also display vertical bars by pressing #GR#G,
 that pattern will help you evaluate if the signal
-is not distorted horizontaly, since all lines 
+is not distorted horizontally, since all lines 
 should be one pixel wide.
 
 #YThis pattern is completely distorted when using
