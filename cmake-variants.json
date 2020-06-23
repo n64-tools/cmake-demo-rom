@@ -20,6 +20,7 @@
       "ED64_V3": {
         "short": "ED64_V3",
         "settings": {
+          "ROM_NAME" : "240pSuite-beta",
           "HARDWARE_TYPE" : "ED64",
           "HARDWARE_REVISION" : "3",
           "BUILD_VERSION" : "0.0.1",
@@ -31,6 +32,7 @@
       "ED64_X7": {
         "short": "ED64_X7",
         "settings": {
+          "ROM_NAME" : "240pSuite-beta",
           "HARDWARE_TYPE" : "ED64",
           "HARDWARE_REVISION" : "7",
           "BUILD_VERSION" : "0.0.1",
@@ -42,6 +44,7 @@
         "64DRIVE_V1": {
           "short": "64DRIVE_V1",
           "settings": {
+            "ROM_NAME" : "240pSuite-beta",
             "HARDWARE_TYPE" : "64DRIVE",
             "HARDWARE_REVISION" : "1",
             "BUILD_VERSION" : "0.0.1",
@@ -53,6 +56,7 @@
         "64DRIVE_V2": {
           "short": "64DRIVE_V2",
           "settings": {
+            "ROM_NAME" : "240pSuite-beta",
             "HARDWARE_TYPE" : "64DRIVE",
             "HARDWARE_REVISION" : "2",
             "BUILD_VERSION" : "0.0.1",
@@ -64,14 +68,15 @@
       "ALL": {
         "short": "All",
         "settings": {
+          "ROM_NAME" : "240pSuite-beta",
           "HARDWARE_TYPE" : "ALL",
           "HARDWARE_REVISION" : "0",
           "BUILD_VERSION" : "0.0.1",
           "CMAKE_TOOLCHAIN_FILE" : "CMake/toolchain.libdragon.cmake",
           "TOOLCHAIN_PREFIX" : "F:/Source/Repos/N64/cmake-demo-rom/toolchain/gcc-toolchain-mips64",
           "LIBDRAGON_PREFIX": "F:/Source/Repos/N64/cmake-demo-rom/toolchain/libdragon"
+        }
       }
-    }
     }
   }
 }

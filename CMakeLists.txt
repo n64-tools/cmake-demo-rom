@@ -11,7 +11,7 @@ set(CMAKE_DISABLE_IN_SOURCE_BUILD ON)
 
 message(STATUS "Building for hardware: ${HARDWARE_TYPE} v${HARDWARE_REVISION}")
 
-project(BUILD-DEMO #rename for your ROM name
+project(${ROM_NAME}
 		VERSION ${BUILD_VERSION}
 		LANGUAGES C ASM)
 
