@@ -129,7 +129,7 @@ target_link_directories( ${ELF_NAME}
 )
 
 set_target_properties( ${ELF_NAME} 
-	PROPERTIES LINK_FLAGS "-T ${LINKER_FILE_NAME}"
+	PROPERTIES LINK_FLAGS "-T ${LINKER_FILE_NAME} -nostdlib"
 	) 
 
 add_custom_command(TARGET ${ELF_NAME}
@@ -161,7 +161,7 @@ add_custom_command(TARGET ${ELF_NAME}
 
 add_custom_command(TARGET ${ELF_NAME}
                   POST_BUILD #Make sure your ROM size is big enough... perhaps we could use "size" on the bin to check?
-                  COMMAND ${N64_TOOL} ARGS -l 6M -t "${PROJECT_NAME}" -h ${ROM_HEADER} -o ${ROM_NAME} ${BIN_NAME} -s 4M ${FILESYS_NAME}
+                  COMMAND ${N64_TOOL} ARGS -l 6M -t "${PROJECT_NAME}" -h ${ROM_HEADER} -o ${ROM_NAME} ${BIN_NAME} -s 1M ${FILESYS_NAME}
 				  )
 		
 add_custom_command(TARGET ${ELF_NAME}
