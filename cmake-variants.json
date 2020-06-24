@@ -78,5 +78,29 @@
         }
       }
     }
+  },
+  "DEPLOY": {
+    "default": "NONE",
+    "choices": {
+      "NONE": {
+        "short": "None",
+        "settings": {
+          "DEPLOY": ""
+        }
+      },
+      "USB": {
+        "short": "Usb",
+        "settings": {
+          "DEPLOY": ""
+        }
+      },
+      "EMULATOR": {
+        "short": "Emulator",
+        "settings": {
+          "DEPLOY": "F:/Source/Repos/N64/cen64/cen64-windows-x86_64.exe",
+          "DEPLOY_PARAMETERS" : "-controller num=1 F:/Source/Repos/N64/cen64/pifdata.bin F:/Source/Repos/N64/cmake-demo-rom/build/240pSuite-beta.v64"
+        }
+      }
+    }
   }
 }

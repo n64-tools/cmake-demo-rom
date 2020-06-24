@@ -180,3 +180,11 @@ else() #add some other compilation flags
 #show error?
 endif(TOOLCHAIN_LIBDRAGON)
 unset(TOOLCHAIN_LIBDRAGON CACHE) # <---- this is the important to make sure the next build succeeds!!
+
+if(DEPLOY)
+separate_arguments(DEPLOY_EXPORT_PARAMETERS_LIST WINDOWS_COMMAND "${DEPLOY_PARAMETERS}")
+add_custom_command(TARGET ${ELF_NAME}
+                  POST_BUILD
+                  COMMAND ${DEPLOY} ${DEPLOY_EXPORT_PARAMETERS_LIST}
+				  )
+endif(DEPLOY)
