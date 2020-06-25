@@ -88,10 +88,18 @@
           "DEPLOY": ""
         }
       },
-      "USB": {
-        "short": "Usb",
+      "64DRIVE": {
+        "short": "64Drive",
         "settings": {
-          "DEPLOY": ""
+          "DEPLOY": "F:/Source/Repos/N64/64drive/loader64",
+          "DEPLOY_PARAMETERS" : "F:/Source/Repos/N64/cmake-demo-rom/build/240pSuite-beta.v64"
+        }
+      },
+      "ED64": {
+        "short": "ED64",
+        "settings": {
+          "DEPLOY": "F:/Source/Repos/N64/ed64/loader",
+          "DEPLOY_PARAMETERS" : "F:/Source/Repos/N64/cmake-demo-rom/build/240pSuite-beta.v64"
         }
       },
       "EMULATOR": {

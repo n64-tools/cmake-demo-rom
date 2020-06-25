@@ -196,10 +196,10 @@ void GetVideoModeStr(char *res, int shortdesc)
 				sprintf(res, "Video: 512x480");
 				break;
 			case RESOLUTION_512x240:
-				sprintf(res, "Video: 512x240p");
+				sprintf(res, "Video: 512x240");
 				break;
 			case RESOLUTION_640x240:
-				sprintf(res, "Video: 640x240p");
+				sprintf(res, "Video: 640x240");
 				break;
 		}
 	}
@@ -220,10 +220,10 @@ void GetVideoModeStr(char *res, int shortdesc)
 				sprintf(res, "[512]");
 				break;
 			case RESOLUTION_512x240:
-				sprintf(res, "[512hp]");
+				sprintf(res, "[512p]");
 				break;
 			case RESOLUTION_640x240:
-				sprintf(res, "[640hp]");
+				sprintf(res, "[640p]");
 				break;
 		}
 
