@@ -9,8 +9,12 @@
 #ifndef UTILS_H
 #define UTILS_H
 
+#ifndef VERSION_NUMBER
 #define VERSION_NUMBER "N64 Beta 0.1"
-#define VERSION_DATE "2016/07/11"
+#endif
+#ifndef VERSION_DATE
+#define VERSION_DATE "2016-07-11"
+#endif
 
 typedef unsigned char byte;
 
