@@ -98,7 +98,7 @@
       "ED64": {
         "short": "ED64",
         "settings": {
-          "DEPLOY": "F:/Source/Repos/N64/ed64/loader",
+          "DEPLOY": "F:/Source/Repos/N64/Everdrive64RomLoader/N64LoaderConsole/bin/Debug/N64LoaderConsole",
           "DEPLOY_PARAMETERS" : "F:/Source/Repos/N64/cmake-demo-rom/build/240pSuite-beta.v64"
         }
       },

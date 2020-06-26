@@ -161,7 +161,7 @@ int isNTSC() //TODO: this still seems to be insufficent on PAL consoles
 {
 	int tv; 
 	
-	tv = *(unsigned int *) 0x80000300;
+	tv = *(unsigned long *) 0x80000300;
 	return tv;
 }
 

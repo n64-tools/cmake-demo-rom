@@ -21,8 +21,8 @@ set( BIN_NAME 			${PROJECT_NAME}.bin )
 set( ROM_NAME 			${PROJECT_NAME}.v64 )
 set( FILESYS_NAME		${PROJECT_NAME}.dfs )
 
-set( LINKER_FILE_NAME "${LIBDRAGON_PREFIX}/lib/n64.ld" )
-set(ROM_HEADER ${LIBDRAGON_PREFIX}/lib/header)
+set( LINKER_FILE_NAME "${LIBDRAGON_PREFIX}/ldscripts/n64.ld" )
+set(ROM_HEADER ${LIBDRAGON_PREFIX}/headers/header)
 
 # make sure the version is set
 if(NOT BUILD_VERSION)
