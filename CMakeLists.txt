@@ -61,6 +61,7 @@ target_sources( ${ELF_NAME}
 PUBLIC
 	${CMAKE_CURRENT_LIST_DIR}/src/240pSuite.c
 	${CMAKE_CURRENT_LIST_DIR}/src/controller.c
+	${CMAKE_CURRENT_LIST_DIR}/src/everdrive.c #needed for ed64?!
 	${CMAKE_CURRENT_LIST_DIR}/src/help.c
 	${CMAKE_CURRENT_LIST_DIR}/src/image.c
 	${CMAKE_CURRENT_LIST_DIR}/src/menu.c

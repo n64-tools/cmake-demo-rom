@@ -360,4 +360,12 @@ void DarkenScreenBuffer(int amount)
 	}
 }
 
+unsigned short vScreenResolutionW(){
+    return dW;
+}
+
+unsigned short vScreenResolutionH(){
+    return dH;
+}
+
 

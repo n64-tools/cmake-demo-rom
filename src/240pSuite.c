@@ -24,6 +24,7 @@
 #include "tests.h"
 #include "patterns.h"
 #include "menu.h"
+#include "flashcart.h"
 
 void DrawPatternsMenu();
 
@@ -41,8 +42,16 @@ int main(void)
 	
 	back = LoadImage("/back.bin");
 	sd = LoadImage("/sd.bin");
+
+#if defined(FLASHCART_TARGET_TYPE) && FLASHCART_TARGET_TYPE == ED64
+	edInitialize();
+#endif
+
     while(1) 
     {
+#if defined(FLASHCART_TARGET_TYPE) && FLASHCART_TARGET_TYPE == ED64
+        edUsbListener();
+#endif
 		int x = 38, y = 62, r = 0xff, g = 0xff, b = 0xff, c = 1;
 		
 		if(reload)

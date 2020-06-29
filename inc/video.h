@@ -34,3 +34,5 @@ void DarkenScreenBuffer(int amount);
 void GetVideoModeStr(char *res, int shortdesc);
 int GetFrameCount();
 void reset_video();
+unsigned short vScreenResolutionW();
+unsigned short vScreenResolutionH();
