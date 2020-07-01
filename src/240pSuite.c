@@ -26,6 +26,10 @@
 #include "menu.h"
 #include "flashcart.h"
 
+#if defined(FLASHCART_TARGET_TYPE) && FLASHCART_TARGET_TYPE == ED64
+#include "everdrive.h"
+#endif
+
 void DrawPatternsMenu();
 
 int main(void)
@@ -44,14 +48,11 @@ int main(void)
 	sd = LoadImage("/sd.bin");
 
 #if defined(FLASHCART_TARGET_TYPE) && FLASHCART_TARGET_TYPE == ED64
-	edInitialize();
+	everdrive_init();
 #endif
 
-    while(1) 
+    for ( ;; ) 
     {
-#if defined(FLASHCART_TARGET_TYPE) && FLASHCART_TARGET_TYPE == ED64
-        edUsbListener();
-#endif
 		int x = 38, y = 62, r = 0xff, g = 0xff, b = 0xff, c = 1;
 		
 		if(reload)
@@ -157,6 +158,9 @@ int main(void)
 			
 			reload = 1;
 		}
+#if defined(FLASHCART_TARGET_TYPE) && FLASHCART_TARGET_TYPE == ED64
+        handle_everdrive();
+#endif
 	}
 	
 	FreeImage(&back);

@@ -62,10 +62,10 @@ void reset_video_vars()
 	current_buffers = 2;
 	current_gamma = GAMMA_NONE;
 	current_antialias = ANTIALIAS_RESAMPLE; // ANTIALIAS_OFF doesn't work in 16BPP
-	EnablePAL = 0;
+	EnablePAL = !isNTSC();
 	EnableDivot = 1;
 	EnableDither = 0;
-	useNTSC = 1;
+	useNTSC = isNTSC();
 }
 
 void reset_video()
@@ -157,7 +157,7 @@ void GetDisplay()
 	ClearScreen();
 }
 
-int isNTSC() //TODO: this still seems to be insufficent on PAL consoles
+int isNTSC() //TODO: this still seems to be insufficent for MPAL consoles
 {
 	int tv; 
 	
