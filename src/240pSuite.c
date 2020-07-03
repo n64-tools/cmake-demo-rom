@@ -25,6 +25,7 @@
 #include "patterns.h"
 #include "menu.h"
 #include "flashcart.h"
+#include "language.h"
 
 #if defined(FLASHCART_TARGET_TYPE) && FLASHCART_TARGET_TYPE == ED64
 #include "everdrive.h"
@@ -73,22 +74,22 @@ int main(void)
 		rdp_DrawImage(221, 86, sd);		
 		rdp_end();
 		
-		DrawStringS(x, y, r, sel == c ? 0 : g, sel == c ? 0 : b, "Test Patterns >"); y += fh; c++;
-		DrawStringS(x, y, r, sel == c ? 0 : g, sel == c ? 0 : b, "Drop Shadow Test"); y += fh; c++;
-		DrawStringS(x, y, r, sel == c ? 0 : g, sel == c ? 0 : b, "Striped Sprite Test"); y += fh; c++;    
-		DrawStringS(x, y, r, sel == c ? 0 : g, sel == c ? 0 : b, "Lag Test"); y += fh; c++;
-		DrawStringS(x, y, r, sel == c ? 0 : g, sel == c ? 0 : b, "Manual Lag Test"); y += fh; c++;
-		DrawStringS(x, y, r, sel == c ? 0 : g, sel == c ? 0 : b, "Scroll Test"); y += fh; c++;
-		DrawStringS(x, y, r, sel == c ? 0 : g, sel == c ? 0 : b, "Grid Scroll Test"); y += fh; c++;
-		DrawStringS(x, y, r, sel == c ? 0 : g, sel == c ? 0 : b, "Horizontal Stripes"); y += fh; c++;    
-		DrawStringS(x, y, r, sel == c ? 0 : g, sel == c ? 0 : b, "Checkerboard"); y += fh; c++;
-		DrawStringS(x, y, r, sel == c ? 0 : g, sel == c ? 0 : b, "Backlit Zone Test"); y += fh; c++;
-		DrawStringS(x, y, r, sel == c ? 0 : g, sel == c ? 0 : b, "Diagonal Test"); y += fh; c++;
-		DrawStringS(x, y, r, sel == c ? 0 : g, sel == c ? 0 : b, "Alternating 240p/480i Test"); y += fh; c++;
-		DrawStringS(x, y, r, sel == c ? 0 : g, sel == c ? 0 : b, "Sound Test"); y += fh; c++;
-		DrawStringS(x, y, r, sel == c ? 0 : g, sel == c ? 0 : b, "Video Mode"); y += fh; c++;
-		DrawStringS(x, y, r, sel == c ? 0 : g, sel == c ? 0 : b, "Options"); y += fh; c++;
-		DrawStringS(x, y, r, sel == c ? 0 : g, sel == c ? 0 : b, "Help"); 
+		DrawStringS(x, y, r, sel == c ? 0 : g, sel == c ? 0 : b, GetStr(TEST_PATTERNS)); y += fh; c++;
+		DrawStringS(x, y, r, sel == c ? 0 : g, sel == c ? 0 : b, GetStr(DROP_SHADOW_TEST)); y += fh; c++;
+		DrawStringS(x, y, r, sel == c ? 0 : g, sel == c ? 0 : b, GetStr(STRIPED_SPRITE_TEST)); y += fh; c++;    
+		DrawStringS(x, y, r, sel == c ? 0 : g, sel == c ? 0 : b, GetStr(LAG_TEST)); y += fh; c++;
+		DrawStringS(x, y, r, sel == c ? 0 : g, sel == c ? 0 : b, GetStr(MANUAL_LAG_TEST)); y += fh; c++;
+		DrawStringS(x, y, r, sel == c ? 0 : g, sel == c ? 0 : b, GetStr(SCROLL_TEST)); y += fh; c++;
+		DrawStringS(x, y, r, sel == c ? 0 : g, sel == c ? 0 : b, GetStr(GRID_SCROLL_TEST)); y += fh; c++;
+		DrawStringS(x, y, r, sel == c ? 0 : g, sel == c ? 0 : b, GetStr(HORIZONTAL_STRIPES)); y += fh; c++;    
+		DrawStringS(x, y, r, sel == c ? 0 : g, sel == c ? 0 : b, GetStr(CHECKERBOARD)); y += fh; c++;
+		DrawStringS(x, y, r, sel == c ? 0 : g, sel == c ? 0 : b, GetStr(BACKLIT_ZONE_TEST)); y += fh; c++;
+		DrawStringS(x, y, r, sel == c ? 0 : g, sel == c ? 0 : b, GetStr(DIAGONAL_TEST)); y += fh; c++;
+		DrawStringS(x, y, r, sel == c ? 0 : g, sel == c ? 0 : b, GetStr(ALTERNATING_RESOLUTION_TEST)); y += fh; c++;
+		DrawStringS(x, y, r, sel == c ? 0 : g, sel == c ? 0 : b, GetStr(SOUND_TEST)); y += fh; c++;
+		DrawStringS(x, y, r, sel == c ? 0 : g, sel == c ? 0 : b, GetStr(VIDEO_MODE)); y += fh; c++;
+		DrawStringS(x, y, r, sel == c ? 0 : g, sel == c ? 0 : b, GetStr(OPTIONS)); y += fh; c++;
+		DrawStringS(x, y, r, sel == c ? 0 : g, sel == c ? 0 : b, GetStr(HELP)); 
 		
 		if(isNTSC())
 			DrawStringS(254, 216, 0xfa, 0xfa, 0xfa, "N64 NTSC");

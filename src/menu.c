@@ -21,6 +21,7 @@
 
 #include "menu.h"
 #include "help.h"
+#include "language.h"
 
 int ChangeVideoEnabled = 1;
 int ShowMenu = 0;
@@ -419,7 +420,7 @@ void ShowOptions(int usebuffer)
 	struct controller_data keys;
 	char		str[100];
 	int			o_current_antialias, o_EnableDither, o_current_bitdepth, 
-				o_EnableDivot, o_current_gamma;
+				o_EnableDivot, o_current_gamma, o_current_language;
 	
 	if(!usebuffer)
 	{
@@ -436,6 +437,7 @@ void ShowOptions(int usebuffer)
 	o_current_bitdepth = current_bitdepth;
 	o_EnableDivot = EnableDivot;
 	o_current_gamma = current_gamma;
+	o_current_language = GetLanguage();
 	
 	while(!close)
 	{		
@@ -454,6 +456,22 @@ void ShowOptions(int usebuffer)
 		rdp_end();  
 
 		DrawStringS(x, y, 0x00, 0xff, 0x00, "Options Menu"); y += 3*fh; 
+		
+		DrawStringS(x, y, r, sel == c ? 0 : g,	sel == c ? 0 : b, "Language:");
+		switch(o_current_language) //TODO: could handle this by cycling through the possible language list, this would save adding languages here...
+		{
+			case ENGLISH:
+				sprintf(str, "English");
+				break;
+			case FRENCH:
+				sprintf(str, "French");
+				break;
+			case GERMAN:
+				sprintf(str, "German");
+				break;
+		}
+		DrawStringS(x+100, y, r, sel == c ? 0 : g,	sel == c ? 0 : b, str);
+		y += fh; c++;
 
 		DrawStringS(x, y, r, sel == c ? 0 : g,	sel == c ? 0 : b, "Enable PAL:");
 		DrawStringS(x+100, y, r, sel == c ? 0 : g,	sel == c ? 0 : b, EnablePAL ? "ON" : "OFF");
@@ -559,15 +577,21 @@ void ShowOptions(int usebuffer)
 		{     
 			switch(sel)
 			{			
-					case 1:						
+					case 1:
+						o_current_language++;
+						if(o_current_language == LAST_LANGUAGE - 1) //Allow for automatic adding of new languages
+							o_current_language = ENGLISH;
+						SetLanguage(o_current_language);
+					break;
+					case 2:						
 						EnablePAL = !EnablePAL;
 						break;
-					case 2:
+					case 3:
 						o_current_gamma++;
 						if(o_current_gamma > GAMMA_CORRECT_DITHER)
 							o_current_gamma = GAMMA_NONE;
 						break;
-					case 3:
+					case 4:
 						o_EnableDivot = !o_EnableDivot;
 						if(o_EnableDivot)
 						{
@@ -580,7 +604,7 @@ void ShowOptions(int usebuffer)
 								o_current_antialias += 3;
 						}
 						break;
-					case 4:
+					case 5:
 						if(o_EnableDivot)
 						{
 							o_current_antialias++;
@@ -594,7 +618,7 @@ void ShowOptions(int usebuffer)
 								o_current_antialias = ANTIALIAS_RESAMPLE_NODIVOT;
 						}
 						break;
-					case 5:						
+					case 6:						
 						o_EnableDither = !o_EnableDither;
 						if(o_current_bitdepth != DEPTH_32_BPP)
 						{
@@ -604,7 +628,7 @@ void ShowOptions(int usebuffer)
 								o_current_bitdepth = DEPTH_16_BPP;
 						}
 						break;
-					case 7:
+					case 8:
 						if(current_antialias != o_current_antialias || EnableDither != o_EnableDither || 
 							current_bitdepth != o_current_bitdepth || EnableDivot != o_EnableDivot || 
 							current_gamma != o_current_gamma)
@@ -619,7 +643,7 @@ void ShowOptions(int usebuffer)
 		{     
 			switch(sel)
 			{		
-				case 6:
+				case 7:
 					if(current_antialias != o_current_antialias || EnableDither != o_EnableDither || 
 							current_bitdepth != o_current_bitdepth || EnableDivot != o_EnableDivot || 
 							current_gamma != o_current_gamma)

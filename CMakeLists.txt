@@ -64,6 +64,7 @@ PUBLIC
 	${CMAKE_CURRENT_LIST_DIR}/src/everdrive.c #needed for ed64?!
 	${CMAKE_CURRENT_LIST_DIR}/src/help.c
 	${CMAKE_CURRENT_LIST_DIR}/src/image.c
+	${CMAKE_CURRENT_LIST_DIR}/src/language.c
 	${CMAKE_CURRENT_LIST_DIR}/src/menu.c
 	${CMAKE_CURRENT_LIST_DIR}/src/patterns.c
 	${CMAKE_CURRENT_LIST_DIR}/src/tests.c
