@@ -12,4 +12,5 @@ _deps
 
 /toolchain
 /build
+/tools/ninja.exe
 
