@@ -24,8 +24,8 @@
           "HARDWARE_REVISION" : "3",
           "BUILD_VERSION" : "0.0.1",
           "CMAKE_TOOLCHAIN_FILE" : "CMake/toolchain.libdragon.cmake",
-          "TOOLCHAIN_PREFIX" : "F:/Source/Repos/N64/cmake-demo-rom/toolchain/gcc-toolchain-mips64",
-          "LIBDRAGON_PREFIX": "F:/Source/Repos/N64/cmake-demo-rom/toolchain/libdragon"
+          "TOOLCHAIN_PREFIX" : "${workspaceFolder}/toolchain/gcc-toolchain-mips64",
+          "LIBDRAGON_PREFIX": "${workspaceFolder}/toolchain/libdragon"
         }
       },
       "ED64_X7": {
@@ -35,8 +35,8 @@
           "HARDWARE_REVISION" : "7",
           "BUILD_VERSION" : "0.0.1",
           "CMAKE_TOOLCHAIN_FILE" : "CMake/toolchain.libdragon.cmake",
-          "TOOLCHAIN_PREFIX" : "F:/Source/Repos/N64/cmake-demo-rom/toolchain/gcc-toolchain-mips64",
-          "LIBDRAGON_PREFIX": "F:/Source/Repos/N64/cmake-demo-rom/toolchain/libdragon"
+          "TOOLCHAIN_PREFIX" : "${workspaceFolder}/toolchain/gcc-toolchain-mips64",
+          "LIBDRAGON_PREFIX": "${workspaceFolder}/toolchain/libdragon"
         }
       },
         "64DRIVE_V1": {
@@ -46,8 +46,8 @@
             "HARDWARE_REVISION" : "1",
             "BUILD_VERSION" : "0.0.1",
             "CMAKE_TOOLCHAIN_FILE" : "CMake/toolchain.libdragon.cmake",
-            "TOOLCHAIN_PREFIX" : "F:/Source/Repos/N64/cmake-demo-rom/toolchain/gcc-toolchain-mips64",
-            "LIBDRAGON_PREFIX": "F:/Source/Repos/N64/cmake-demo-rom/toolchain/libdragon"
+            "TOOLCHAIN_PREFIX" : "${workspaceFolder}/toolchain/gcc-toolchain-mips64",
+            "LIBDRAGON_PREFIX": "${workspaceFolder}/toolchain/libdragon"
           }
         },
         "64DRIVE_V2": {
@@ -57,8 +57,8 @@
             "HARDWARE_REVISION" : "2",
             "BUILD_VERSION" : "0.0.1",
             "CMAKE_TOOLCHAIN_FILE" : "CMake/toolchain.libdragon.cmake",
-            "TOOLCHAIN_PREFIX" : "F:/Source/Repos/N64/cmake-demo-rom/toolchain/gcc-toolchain-mips64",
-            "LIBDRAGON_PREFIX": "F:/Source/Repos/N64/cmake-demo-rom/toolchain/libdragon"
+            "TOOLCHAIN_PREFIX" : "${workspaceFolder}/toolchain/gcc-toolchain-mips64",
+            "LIBDRAGON_PREFIX": "${workspaceFolder}/toolchain/libdragon"
         }
       },
       "ALL": {
@@ -68,8 +68,8 @@
           "HARDWARE_REVISION" : "0",
           "BUILD_VERSION" : "0.0.1",
           "CMAKE_TOOLCHAIN_FILE" : "CMake/toolchain.libdragon.cmake",
-          "TOOLCHAIN_PREFIX" : "F:/Source/Repos/N64/cmake-demo-rom/toolchain/gcc-toolchain-mips64",
-          "LIBDRAGON_PREFIX": "F:/Source/Repos/N64/cmake-demo-rom/toolchain/libdragon"
+          "TOOLCHAIN_PREFIX" : "${workspaceFolder}/toolchain/gcc-toolchain-mips64",
+          "LIBDRAGON_PREFIX": "${workspaceFolder}/toolchain/libdragon"
       }
     }
     }
