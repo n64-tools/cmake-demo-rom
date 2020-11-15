@@ -14,64 +14,30 @@
         }   
       }
   },
-  "TARGET": {
-    "default": "ALL",
+  "TARGET": 
+  {
+    "default": "FLASHCART",
     "choices": {
-      "ED64_V3": {
-        "short": "ED64_V3",
+      "FLASHCART": {
+        "short": "Flashcart",
         "settings": {
-          "HARDWARE_TYPE" : "ED64",
-          "HARDWARE_REVISION" : "3",
+          "HARDWARE_TYPE" : "FLASHCART",
           "BUILD_VERSION" : "0.0.1",
-          "CMAKE_TOOLCHAIN_FILE" : "CMake/toolchain.libdragon.cmake",
+          "CMAKE_TOOLCHAIN_FILE" : "${workspaceFolder}/CMake/toolchain.libdragon.cmake",
           "TOOLCHAIN_PREFIX" : "${workspaceFolder}/toolchain/gcc-toolchain-mips64",
           "LIBDRAGON_PREFIX": "${workspaceFolder}/toolchain/libdragon"
         }
       },
-      "ED64_X7": {
-        "short": "ED64_X7",
+      "EMULATOR": {
+        "short": "Emulator",
         "settings": {
-          "HARDWARE_TYPE" : "ED64",
-          "HARDWARE_REVISION" : "7",
+          "HARDWARE_TYPE" : "EMULATOR",
           "BUILD_VERSION" : "0.0.1",
-          "CMAKE_TOOLCHAIN_FILE" : "CMake/toolchain.libdragon.cmake",
+          "CMAKE_TOOLCHAIN_FILE" : "${workspaceFolder}/CMake/toolchain.libdragon.cmake",
           "TOOLCHAIN_PREFIX" : "${workspaceFolder}/toolchain/gcc-toolchain-mips64",
           "LIBDRAGON_PREFIX": "${workspaceFolder}/toolchain/libdragon"
         }
-      },
-        "64DRIVE_V1": {
-          "short": "64DRIVE_V1",
-          "settings": {
-            "HARDWARE_TYPE" : "64DRIVE",
-            "HARDWARE_REVISION" : "1",
-            "BUILD_VERSION" : "0.0.1",
-            "CMAKE_TOOLCHAIN_FILE" : "CMake/toolchain.libdragon.cmake",
-            "TOOLCHAIN_PREFIX" : "${workspaceFolder}/toolchain/gcc-toolchain-mips64",
-            "LIBDRAGON_PREFIX": "${workspaceFolder}/toolchain/libdragon"
-          }
-        },
-        "64DRIVE_V2": {
-          "short": "64DRIVE_V2",
-          "settings": {
-            "HARDWARE_TYPE" : "64DRIVE",
-            "HARDWARE_REVISION" : "2",
-            "BUILD_VERSION" : "0.0.1",
-            "CMAKE_TOOLCHAIN_FILE" : "CMake/toolchain.libdragon.cmake",
-            "TOOLCHAIN_PREFIX" : "${workspaceFolder}/toolchain/gcc-toolchain-mips64",
-            "LIBDRAGON_PREFIX": "${workspaceFolder}/toolchain/libdragon"
-        }
-      },
-      "ALL": {
-        "short": "All",
-        "settings": {
-          "HARDWARE_TYPE" : "ALL",
-          "HARDWARE_REVISION" : "0",
-          "BUILD_VERSION" : "0.0.1",
-          "CMAKE_TOOLCHAIN_FILE" : "CMake/toolchain.libdragon.cmake",
-          "TOOLCHAIN_PREFIX" : "${workspaceFolder}/toolchain/gcc-toolchain-mips64",
-          "LIBDRAGON_PREFIX": "${workspaceFolder}/toolchain/libdragon"
       }
-    }
     }
   }
 }

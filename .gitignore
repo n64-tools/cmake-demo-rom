@@ -10,7 +10,7 @@ compile_commands.json
 CTestTestfile.cmake
 _deps
 
-/toolchain
-/build
-/tools/ninja.exe
+/toolchain/
+/build/
+/tools/
 
