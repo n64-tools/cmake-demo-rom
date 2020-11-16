@@ -9,7 +9,9 @@ Requires:
 ![Required VSCode Extensions](vscode-extensions.png)
 
 * Run `UpdateToolchain.ps1` to download the required toolchain and libdragon files
-* Adjust .vscode/cmake-variants.json for your paths if necessary (although should work out the box)
-* Adjust .vscode/settings.json for your paths (although should work out the box)
+* Adjust .vscode/cmake-variants.json for your paths if necessary (although should work automatically out the box)
+* Adjust .vscode/settings.json for your paths (although should work automatically out the box)
 
-In vscode hit F7 to build the ROM
+In vscode
+* Click on the Bottom bar to set the "build variant": ![CMake variant](vscode-set-variant.png)
+* Hit F7 to build the ROM
