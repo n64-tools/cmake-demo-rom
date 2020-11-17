@@ -9,7 +9,17 @@ set(CMAKE_VERBOSE_MAKEFILE ON CACHE BOOL "ON" FORCE) # debug helper
 set(CMAKE_DISABLE_SOURCE_CHANGES ON)
 set(CMAKE_DISABLE_IN_SOURCE_BUILD ON)
 
-message(STATUS "Building for hardware: ${HARDWARE_TYPE} v${HARDWARE_REVISION}")
+message(STATUS "Building for hardware: ${HARDWARE_TYPE} with SDK: ${SDK_TYPE}")
+
+# make sure the version is set
+if(NOT BUILD_VERSION)
+	set(BUILD_VERSION 0.0.1)
+endif()
+
+string(REPLACE "." ";" VERSION_LIST ${BUILD_VERSION})
+list(GET VERSION_LIST 0 BUILD_VER_MAJOR)
+list(GET VERSION_LIST 1 BUILD_VER_MINOR)
+list(GET VERSION_LIST 2 BUILD_VER_REV)
 
 project(BUILD-DEMO #rename for your ROM name
 		VERSION ${BUILD_VERSION}
@@ -22,18 +32,6 @@ set( ROM_NAME 			${PROJECT_NAME}.v64 )
 
 set( LINKER_FILE_NAME "${LIBDRAGON_PREFIX}/lib/n64.ld" )
 set(ROM_HEADER ${LIBDRAGON_PREFIX}/lib/header)
-
-# make sure the version is set
-if(NOT BUILD_VERSION)
-	set(BUILD_VERSION 0.0.1)
-endif()
-
-string(REPLACE "." ";" VERSION_LIST ${BUILD_VERSION})
-list(GET VERSION_LIST 0 BUILD_VER_MAJOR)
-list(GET VERSION_LIST 1 BUILD_VER_MINOR)
-list(GET VERSION_LIST 2 BUILD_VER_REV)
-
-
 
 add_executable( ${ELF_NAME}
 #Add libs here:
