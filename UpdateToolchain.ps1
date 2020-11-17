@@ -10,7 +10,6 @@ if (Test-Path $output)
     Remove-Item -LiteralPath $output -Force -Recurse
 }
 Invoke-WebRequest -Uri $url -UseBasicParsing -OutFile $output
-& $output
 
 if (Test-Path $destination) 
 {
@@ -29,7 +28,6 @@ if (Test-Path $output)
     Remove-Item -LiteralPath $output -Force -Recurse
 }
 Invoke-WebRequest -Uri $url -UseBasicParsing -OutFile $output
-& $output
 if (Test-Path $destination) 
 {
     Remove-Item -LiteralPath $destination -Force -Recurse
@@ -48,7 +46,6 @@ if (Test-Path $output)
     Remove-Item -LiteralPath $output -Force -Recurse
 }
 Invoke-WebRequest -Uri $url -UseBasicParsing -OutFile $output
-& $output
 if (Test-Path $destination) 
 {
     Remove-Item -LiteralPath $destination -Force -Recurse

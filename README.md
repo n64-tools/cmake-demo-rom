@@ -4,6 +4,7 @@ Generates a ROM built with CMake
 Note: this is currently WiP for Windows 10 based dev environments.
 
 Requires:
+* Turning on Windows 10 developer mode (and enabling Remote Powershell execution policy)
 * https://cmake.org/download/ (tested working with 3.18.4) to be installed (make sure the PATH variable is set).
 * VSCode with `CMake`, `CMake Tools` and `C/C++` extensions
 ![Required VSCode Extensions](vscode-extensions.png)
