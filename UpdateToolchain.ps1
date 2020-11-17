@@ -1,4 +1,3 @@
-Set-ExecutionPolicy -Scope LocalMachine -ExecutionPolicy Unrestricted
 
 $filepath = "$PSScriptRoot/temp/"
 New-Item -ItemType Directory -Force -Path $filepath
