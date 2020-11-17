@@ -1,3 +1,5 @@
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+
 $filepath = "$PSScriptRoot/temp/"
 New-Item -ItemType Directory -Force -Path $filepath
 
