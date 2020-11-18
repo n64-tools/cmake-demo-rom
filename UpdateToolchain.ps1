@@ -85,6 +85,26 @@ Write-Host "NOTE: Cen64 not work without manually installing pifdata.bin to $des
 
 
 
+$url = "https://dev.azure.com/n64-tools/_apis/resources/Containers/8383168/binaries?itemPath=binaries%2Fusb64%2Fnet45%2Fusb64.exe"
+$output = "$PSScriptRoot/temp/usbtool.exe"
+$destination = "$PSScriptRoot/tools/ed64usb/"
+
+if (Test-Path $output) 
+{
+    Remove-Item -LiteralPath $output -Force -Recurse
+}
+Write-Host "Downloading ED64 USB tool..."
+(New-Object Net.WebClient).Downloadfile($url , $output)
+if (Test-Path $destination) 
+{
+    Remove-Item -LiteralPath $destination -Force -Recurse
+}
+Move-Item -Path $output -Destination $destination
+Write-Host "Downloaded ED64 USB tool successfully."
+Write-Host "NOTE: ED64 USB tool will not work without a minimum of V3.05 OS!"
+
+
+
 $filepath = "$PSScriptRoot/temp/"
 if (Test-Path $filepath) 
 {
