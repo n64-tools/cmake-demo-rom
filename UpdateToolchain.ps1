@@ -57,6 +57,28 @@ if (Test-Path $destination)
 Expand-Archive -Force -Path $output -DestinationPath $destination
 Write-Host "Downloaded Ninja-Build successfully."
 
+$url = "https://www.cen64.com/uploads/stable/cen64-windows-x86_64.exe"
+$output = "$PSScriptRoot/temp/cen64-windows-x86_64.exe"
+$destination = "$PSScriptRoot/tools/cen64/"
+
+if (Test-Path $output) 
+{
+    Remove-Item -LiteralPath $output -Force -Recurse
+}
+Write-Host "Downloading Cen64 Emulator..."
+(New-Object Net.WebClient).Downloadfile($url , $output)
+if (Test-Path $destination) 
+{
+    Remove-Item -LiteralPath $destination -Force -Recurse
+}
+Move-Item -Path $output -Destination $destination
+Write-Host "Downloaded Cen64 Emulator successfully."
+Write-Host "NOTE: Will not work without manually installing pifdata.bin!"
+
+
+
+
+
 $filepath = "$PSScriptRoot/temp/"
 if (Test-Path $filepath) 
 {
