@@ -23,8 +23,8 @@
         "settings": {
           "HARDWARE_TYPE" : "FLASHCART",
           "BUILD_VERSION" : "0.0.1",
-          "DEPLOY_EXE" : "${workspaceFolder}/tools/ed64usb/usbtool.exe",
-          "DEPLOY_PARAMETERS" : "${workspaceFolder}/build/BUILD-DEMO.v64"
+          "DEPLOY_EXE" : "${workspaceFolder}/tools/ed64usb/usb64.exe",
+          "DEPLOY_PARAMETERS" : "-rom=${workspaceFolder}/build/BUILD-DEMO.v64 -start"
         }
       },
       "EMULATOR": {
