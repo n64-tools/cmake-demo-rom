@@ -107,7 +107,7 @@ if (Test-Path $destination)
 New-Item -ItemType Directory -Force -Path $destination
 Move-Item -Path $output -Destination $destination
 Write-Host "Downloaded ED64 USB tool successfully."
-Write-Host "NOTE: ED64 USB tool will not work without a minimum of V3.05 OS on the flashcart!" -ForegroundColor red
+Write-Host "NOTE: ED64 USB tool will not work without a minimum of OS V3.05 on the flashcart!" -ForegroundColor red
 
 
 
