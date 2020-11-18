@@ -10,7 +10,8 @@ if (Test-Path $output)
 {
     Remove-Item -LiteralPath $output -Force -Recurse
 }
-Invoke-WebRequest -Uri $url -UseBasicParsing -OutFile $output
+Write-Host "Downloading Libdragon..."
+(New-Object Net.WebClient).Downloadfile($url , $output)
 
 if (Test-Path $destination) 
 {
@@ -28,9 +29,8 @@ if (Test-Path $output)
 {
     Remove-Item -LiteralPath $output -Force -Recurse
 }
-
-$wc = New-Object net.webclient
-$wc.Downloadfile($url , $output)
+Write-Host "Downloading GCC..."
+(New-Object Net.WebClient).Downloadfile($url , $output)
 if (Test-Path $destination) 
 {
     Remove-Item -LiteralPath $destination -Force -Recurse
@@ -48,7 +48,8 @@ if (Test-Path $output)
 {
     Remove-Item -LiteralPath $output -Force -Recurse
 }
-Invoke-WebRequest -Uri $url -UseBasicParsing -OutFile $output
+Write-Host "Downloading Ninja-Build..."
+(New-Object Net.WebClient).Downloadfile($url , $output)
 if (Test-Path $destination) 
 {
     Remove-Item -LiteralPath $destination -Force -Recurse
@@ -63,4 +64,4 @@ if (Test-Path $filepath)
 }
 Write-Host "Finished cleanup of temp directories.."
 
-Write-Host "Toolchain installed sucessfully."
+Write-Host "Toolchain install completed sucessfully."
