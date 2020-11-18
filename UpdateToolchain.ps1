@@ -79,9 +79,10 @@ if (Test-Path $destination)
 {
     Remove-Item -LiteralPath $destination -Force -Recurse
 }
+New-Item -ItemType Directory -Force -Path $destination
 Move-Item -Path $output -Destination $destination
 Write-Host "Downloaded Cen64 Emulator successfully."
-Write-Host "NOTE: Cen64 not work without manually installing pifdata.bin to $destination!"
+Write-Host "NOTE: Cen64 not work without manually installing pifdata.bin to $destination!" -ForegroundColor red
 
 
 
@@ -99,9 +100,10 @@ if (Test-Path $destination)
 {
     Remove-Item -LiteralPath $destination -Force -Recurse
 }
+New-Item -ItemType Directory -Force -Path $destination
 Move-Item -Path $output -Destination $destination
 Write-Host "Downloaded ED64 USB tool successfully."
-Write-Host "NOTE: ED64 USB tool will not work without a minimum of V3.05 OS!"
+Write-Host "NOTE: ED64 USB tool will not work without a minimum of V3.05 OS on the flashcart!" -ForegroundColor red
 
 
 
