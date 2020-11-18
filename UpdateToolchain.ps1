@@ -66,7 +66,9 @@ Write-Host "Downloaded Ninja-Build successfully."
 
 
 $url = "https://www.cen64.com/uploads/stable/cen64-windows-x86_64.exe"
+$url2 = "https://cen64.com/uploads/stable/OpenAL32.dll"
 $output = "$PSScriptRoot/temp/cen64-windows-x86_64.exe"
+$output2 = "$PSScriptRoot/temp/OpenAL32.dll"
 $destination = "$PSScriptRoot/tools/cen64/"
 
 if (Test-Path $output) 
@@ -75,14 +77,16 @@ if (Test-Path $output)
 }
 Write-Host "Downloading Cen64 Emulator..."
 (New-Object Net.WebClient).Downloadfile($url , $output)
+(New-Object Net.WebClient).Downloadfile($url2 , $output2)
 if (Test-Path $destination) 
 {
     Remove-Item -LiteralPath $destination -Force -Recurse
 }
 New-Item -ItemType Directory -Force -Path $destination
 Move-Item -Path $output -Destination $destination
+Move-Item -Path $output2 -Destination $destination
 Write-Host "Downloaded Cen64 Emulator successfully."
-Write-Host "NOTE: Cen64 not work without manually installing pifdata.bin to $destination!" -ForegroundColor red
+Write-Host "NOTE: Cen64 not work without manually installing pifdata.bin to $destination!" -ForegroundColor orange
 
 
 
@@ -103,7 +107,7 @@ if (Test-Path $destination)
 New-Item -ItemType Directory -Force -Path $destination
 Move-Item -Path $output -Destination $destination
 Write-Host "Downloaded ED64 USB tool successfully."
-Write-Host "NOTE: ED64 USB tool will not work without a minimum of V3.05 OS on the flashcart!" -ForegroundColor red
+Write-Host "NOTE: ED64 USB tool will not work without a minimum of V3.05 OS on the flashcart!" -ForegroundColor orange
 
 
 
