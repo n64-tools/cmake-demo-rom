@@ -23,8 +23,8 @@
         "settings": {
           "HARDWARE_TYPE" : "FLASHCART",
           "BUILD_VERSION" : "0.0.1",
-          "DEPLOY_EXE" : "",
-          "DEPLOY_PARAMETERS" : ""
+          "DEPLOY_EXE" : "${workspaceFolder}/tools/ed64usb/usbtool.exe",
+          "DEPLOY_PARAMETERS" : "${workspaceFolder}/build/BUILD-DEMO.v64"
         }
       },
       "EMULATOR": {
@@ -32,8 +32,8 @@
         "settings": {
           "HARDWARE_TYPE" : "EMULATOR",
           "BUILD_VERSION" : "0.0.1",
-          "DEPLOY_EXE" : "",
-          "DEPLOY_PARAMETERS" : ""
+          "DEPLOY_EXE" : "${workspaceFolder}/tools/cen64/cen64-windows-x86_64.exe",
+          "DEPLOY_PARAMETERS" : "-controller num=1 ${workspaceFolder}/tools/cen64/pifdata.bin ${workspaceFolder}/build/BUILD-DEMO.v64"
         }
       },
       "NO_DEPLOY": {
