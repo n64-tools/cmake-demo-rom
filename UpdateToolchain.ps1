@@ -28,7 +28,9 @@ if (Test-Path $output)
 {
     Remove-Item -LiteralPath $output -Force -Recurse
 }
-Invoke-WebRequest -Uri $url -UseBasicParsing -OutFile $output
+
+$wc = New-Object net.webclient
+$wc.Downloadfile($url , $output)
 if (Test-Path $destination) 
 {
     Remove-Item -LiteralPath $destination -Force -Recurse
