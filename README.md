@@ -15,5 +15,7 @@ Requirements:
 Building the ROM:
 In VS-Code
 * Click on the Bottom bar to set the "build variant": ![CMake variant](vscode-set-variant.png)
+* Note: Setting "Emulator" currently requires that `pifdata.bin` is available in the `tools/cen64` directory.
+* Note: Setting "Flashcart" currently requires that you are using an ED64 with X-Series OS 3.05 or above.
 * Use any kit e.g. "Unspecified" (as this is handled by Ninja-Build)
 * Hit F7 to build the ROM
