@@ -16,20 +16,33 @@
   },
   "TARGET": 
   {
-    "default": "FLASHCART",
+    "default": "NO_DEPLOY",
     "choices": {
       "FLASHCART": {
         "short": "Flashcart",
         "settings": {
           "HARDWARE_TYPE" : "FLASHCART",
-          "BUILD_VERSION" : "0.0.1"
+          "BUILD_VERSION" : "0.0.1",
+          "DEPLOY_EXE" : "",
+          "DEPLOY_PARAMETERS" : ""
         }
       },
       "EMULATOR": {
         "short": "Emulator",
         "settings": {
           "HARDWARE_TYPE" : "EMULATOR",
-          "BUILD_VERSION" : "0.0.1"
+          "BUILD_VERSION" : "0.0.1",
+          "DEPLOY_EXE" : "",
+          "DEPLOY_PARAMETERS" : ""
+        }
+      },
+      "NO_DEPLOY": {
+        "short": "No Deployment",
+        "settings": {
+          "HARDWARE_TYPE" : "None",
+          "BUILD_VERSION" : "0.0.1",
+          "DEPLOY_EXE" : "",
+          "DEPLOY_PARAMETERS" : ""
         }
       }
     }
