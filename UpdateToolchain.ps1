@@ -90,8 +90,8 @@ Write-Host "NOTE: Cen64 not work without manually installing pifdata.bin to $des
 
 
 
-$url = "http://krikzz.com/pub/support/everdrive-64/x-series/dev/usb64-v1.0.0.2.zip"
-$output = "$PSScriptRoot/temp/usb64-v1.0.0.2.zip"
+$url = "https://n64tools.blob.core.windows.net/binaries/N64-tools/ed64usbtool/usb64.exe"
+$output = "$PSScriptRoot/temp/usb64.exe"
 $destination = "$PSScriptRoot/tools/ed64usb/"
 
 if (Test-Path $output) 
@@ -104,7 +104,8 @@ if (Test-Path $destination)
 {
     Remove-Item -LiteralPath $destination -Force -Recurse
 }
-Expand-Archive -Force -Path $output -DestinationPath $destination
+New-Item -ItemType Directory -Force -Path $destination
+Move-Item -Path $output -Destination $destination
 Write-Host "Downloaded ED64 USB tool successfully."
 Write-Host "NOTE: ED64 USB tool will not work without a minimum of V3.05 OS on the flashcart!" -ForegroundColor red
 
