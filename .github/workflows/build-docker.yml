@@ -1,0 +1,64 @@
+name: CI
+on:
+  push:
+  pull_request:
+
+jobs:
+  cmake-container-test-build:
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/n64-tools/gcc-toolchain-mips64:latest
+      credentials:
+        username: ${{ github.actor }}
+        password: ${{ secrets.github_token }}
+
+      volumes:
+        - my_docker_volume:/volume_mount
+      options: --cpus 1
+
+    steps:
+      - name: Check for dockerenv file
+        run: (ls /.dockerenv && echo Found dockerenv) || (echo No dockerenv)
+
+      - name: Checkout Code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 1 # we only require the last check-in, unless we want to create a changelog.
+
+      - name: Create ROM output DIR
+        run: |
+          mkdir ${{ github.workspace }}/build
+          
+      - name: Generate CMake files
+        run: >-
+          cd ${{ github.workspace }}/build && cmake -G Ninja
+          -DCMAKE_TOOLCHAIN_FILE=${{ github.workspace }}/CMake/toolchain.libdragon.cmake
+          -DTOOLCHAIN_PREFIX=${{ github.workspace }}/toolchain/gcc-toolchain-mips64
+          -DLIBDRAGON_PREFIX=${{ github.workspace }}/toolchain/libdragon
+          -DHARDWARE_TYPE=FLASHCART
+          -DSDK_TYPE=LIBDRAGON
+          -DCMAKE_MAKE_PROGRAM=ninja
+          ${{ github.workspace }}
+        continue-on-error: true
+
+      - name: Build ROM using CMake
+        run: |
+          cmake --build ${{ github.workspace }}/build --target all --config Release
+        continue-on-error: true
+
+      # - name: Check build output
+      #   run: |
+      #     echo 'build dir listing:'
+      #     cd ${{ github.workspace }}/build
+      #     ls -R .
+      #   continue-on-error: true
+
+      - name: Publish Build Artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: ROM
+          path: |
+            **/build/*.elf
+            **/build/*.bin
+            **/build/*.v64
+        continue-on-error: true
