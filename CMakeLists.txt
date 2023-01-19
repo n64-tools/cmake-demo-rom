@@ -30,8 +30,8 @@ set( ELF_NAME 			${PROJECT_NAME}.elf )
 set( BIN_NAME 			${PROJECT_NAME}.bin )
 set( ROM_NAME 			${PROJECT_NAME}.v64 )
 
-set( LINKER_FILE_NAME "${LIBDRAGON_PREFIX}/lib/n64.ld" )
-set(ROM_HEADER ${LIBDRAGON_PREFIX}/lib/header)
+set( LINKER_FILE_NAME "${LIBDRAGON_PREFIX}/ldscripts/n64.ld" )
+set(ROM_HEADER ${LIBDRAGON_PREFIX}/headers/header)
 
 add_executable( ${ELF_NAME}
 #Add libs here:

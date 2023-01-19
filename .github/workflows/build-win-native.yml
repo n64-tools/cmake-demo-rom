@@ -1,0 +1,81 @@
+# This workflow will build the exmple ROM to keep it up-to-date.
+name: Build ROM with CMake
+
+on:
+  push:
+  pull_request:
+  
+jobs:
+  build-rom:
+    runs-on: windows-latest
+    strategy:
+      fail-fast: false
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 1 # we only require the last check-in, unless we want to create a changelog.
+
+      # # Cache and restore dependencies instead of downloading them to increase build speed.
+      # # Expires after 7 days.
+      # - uses: actions/cache@v3
+      #   id: cache
+      #   with:
+      #     path: |
+      #       ./toolchain/**/*.tar.gz
+      #       ./toolchain/**/*.tar.bz2
+      #     key: ${{ runner.os }}-dependency-downloads # TODO: concurrency errors may currently occur due to matrix, but they are the same files.
+
+      - name: Get toolchain dependencies
+        run: |
+          echo 'Downloading dependencies'
+          ./UpdateToolchain.ps1
+        continue-on-error: true
+
+      # - name: Check toolchain directory output
+      #   run: |
+      #     echo 'toolchain directory listing:'
+      #     ls -R ./toolchain/libdragon/
+      #   continue-on-error: true
+
+      # - name: Add libdragon tools to PATH
+      #   run: setx PATH "%PATH%;${{ github.workspace }}\toolchain\libdragon\tools"
+
+      - name: Create ROM output DIR
+        run: |
+          mkdir ${{ github.workspace }}/build
+          
+      - name: Generate CMake files
+        run: >-
+          cd ${{ github.workspace }}/build && cmake -G Ninja
+          -DCMAKE_TOOLCHAIN_FILE=${{ github.workspace }}/CMake/toolchain.libdragon.cmake
+          -DTOOLCHAIN_PREFIX=${{ github.workspace }}/toolchain/gcc-toolchain-mips64
+          -DLIBDRAGON_PREFIX=${{ github.workspace }}/toolchain/libdragon
+          -DHARDWARE_TYPE=FLASHCART
+          -DSDK_TYPE=LIBDRAGON
+          -DCMAKE_MAKE_PROGRAM=${{ github.workspace }}/tools/ninja.exe
+          ${{ github.workspace }}
+        continue-on-error: true
+
+      - name: Build ROM using CMake
+        run: |
+          cmake --build ${{ github.workspace }}/build --target all --config Release
+        continue-on-error: true
+
+      # - name: Check build output
+      #   run: |
+      #     echo 'build dir listing:'
+      #     cd ${{ github.workspace }}/build
+      #     ls -R .
+      #   continue-on-error: true
+
+      - name: Publish Build Artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: ROM
+          path: |
+            **/build/*.elf
+            **/build/*.bin
+            **/build/*.v64
+        continue-on-error: true
