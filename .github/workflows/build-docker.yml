@@ -29,25 +29,28 @@ jobs:
         uses: actions/checkout@v3
         with:
           repository: dragonminded/libdragon
-          path: toolchain/libdragon
+          path: libdragon-build
           fetch-depth: 1 # we only require the last check-in, unless we want to create a changelog.
 
       - name: Build libdragon and tools
         run: |
-          cd toolchain/libdragon
-          # TODO: we dont need to build the ROMs!
+          cd libdragon-build
           make libdragon
           make tools
         continue-on-error: true
 
-      - name: move ld scripts
+      - name: move toolchain
         run: |
-          mkdir toolchain/libdragon/ldscripts/
-          mkdir toolchain/libdragon/headers/
-          # TODO: use a wildcard!
-          mv ./toolchain/libdragon/n64.ld ./toolchain/libdragon/ldscripts/n64.ld
-          mv ./toolchain/libdragon/rsp.ld ./toolchain/libdragon/ldscripts/rsp.ld
-          mv ./toolchain/header ./toolchain/libdragon/headers/header
+          mkdir -p toolchain/libdragon/include/
+          cp ./libdragon-build/include/* toolchain/libdragon/include/
+          mkdir -p toolchain/libdragon/lib/
+          cp ./libdragon-build/*.a toolchain/libdragon/lib/
+          mkdir -p toolchain/libdragon/ldscripts/
+          cp ./libdragon-build/*.ld ./toolchain/libdragon/ldscripts/
+          mkdir -p toolchain/libdragon/headers/
+          cp ./libdragon-build/header ./toolchain/libdragon/headers/
+          mkdir -p toolchain/libdragon/tools/
+          cp ./libdragon-build/tools/* ./toolchain/libdragon/tools/
         continue-on-error: true
 
       - name: Check directory output
