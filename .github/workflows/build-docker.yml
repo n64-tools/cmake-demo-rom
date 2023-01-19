@@ -50,7 +50,10 @@ jobs:
           mkdir -p toolchain/libdragon/headers/
           cp ./libdragon-build/header ./toolchain/libdragon/headers/
           mkdir -p toolchain/libdragon/tools/
-          cp -r ./libdragon-build/tools/* ./toolchain/libdragon/tools/
+          cp -r ./libdragon-build/tools/ ./toolchain/libdragon/tools/
+          rm -rf ./toolchain/libdragon/tools/*.sh
+          rm -rf ./toolchain/libdragon/tools/*.c
+          rm -rf ./toolchain/libdragon/tools/Makefile
         continue-on-error: true
 
       - name: Check directory output
@@ -91,7 +94,7 @@ jobs:
       - name: Publish Build Artifacts
         uses: actions/upload-artifact@v3
         with:
-          name: ROM
+          name: DOCKER-ROM
           path: |
             ./build/*.elf
             ./build/*.bin

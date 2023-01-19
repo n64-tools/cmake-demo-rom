@@ -73,7 +73,7 @@ jobs:
       - name: Publish Build Artifacts
         uses: actions/upload-artifact@v3
         with:
-          name: ROM
+          name: WIN-NATIVE-ROM
           path: |
             **/build/*.elf
             **/build/*.bin
