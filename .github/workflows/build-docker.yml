@@ -50,7 +50,7 @@ jobs:
           mkdir -p toolchain/libdragon/headers/
           cp ./libdragon-build/header ./toolchain/libdragon/headers/
           mkdir -p toolchain/libdragon/tools/
-          cp -r ./libdragon-build/tools/* ./toolchain/libdragon/tools/
+          cp -p ./libdragon-build/tools/* ./toolchain/libdragon/tools/
         continue-on-error: true
 
       - name: Check directory output
@@ -67,9 +67,9 @@ jobs:
       - name: Generate CMake files
         run: >-
           cd ./build && cmake -G Ninja
-          -DCMAKE_TOOLCHAIN_FILE=CMake/toolchain.libdragon.cmake
-          -DTOOLCHAIN_PREFIX=./toolchain/gcc-toolchain-mips64
-          -DLIBDRAGON_PREFIX=./toolchain/libdragon
+          -DCMAKE_TOOLCHAIN_FILE=~/CMake/toolchain.libdragon.cmake
+          -DTOOLCHAIN_PREFIX=~/toolchain/gcc-toolchain-mips64
+          -DLIBDRAGON_PREFIX=~/toolchain/libdragon
           -DHARDWARE_TYPE=FLASHCART
           -DSDK_TYPE=LIBDRAGON
           -DCMAKE_MAKE_PROGRAM=ninja
