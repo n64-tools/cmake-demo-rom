@@ -42,6 +42,7 @@
         "short": "LibDragon",
         "settings": {
           "SDK_TYPE" : "LIBDRAGON",
+          "LIBDRAGON_VERSION_TAG" : "develop-dragonminded",
           "CMAKE_TOOLCHAIN_FILE" : "${workspaceFolder}/CMake/toolchain.libdragon.cmake",
           "TOOLCHAIN_PREFIX" : "${workspaceFolder}/toolchain/gcc-toolchain-mips64",
           "LIBDRAGON_PREFIX": "${workspaceFolder}/toolchain/libdragon"

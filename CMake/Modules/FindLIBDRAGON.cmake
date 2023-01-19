@@ -2,27 +2,59 @@ list(APPEND LIBDRAGON_INCLUDE_DIRS ${PROJECT_BINARY_DIR}/LibDragon_Source/includ
 
 
 set(LIBDRAGON_SRCS
-    n64sys.c
-    interrupt.c
-    inthandler.c
-    entrypoint.S
-    dragonfs.c
-    inthandler.S
+    audio/libxm/context.c
+    audio/libxm/load.c
+    audio/libxm/play.c
+    audio/libxm/xm.h
+    audio/libxm/xm_internal.h
+    audio/ay8910.c
+    audio/lzh5.h
+    audio/lzh5.h
+    audio/lzh5.h
+    audio/samplebuffer.c
+    audio/wav64.c
+    audio/xm64.c
+    audio/ym64.c
+    fatfs/diskio.h
+    fatfs/ff.c
+    fatfs/ff.h
+    fatfs/ffconf.h
+    fatfs/ffunicode.c
+    rspq/rsp_queue.S
+    rspq/rspq.c
     audio.c
-    display.c
     console.c
     controller.c
-    mempak.c
-    tpak.c
+    debug.c
+    debug_sdfs_64drive.c
+    debug_sdfs_ed64.c
+    debug_sdfs_sc64.c
+    display.c
+    dma.c
+    do_ctors.c
+    dragonfs.c
+    eeprom.c
+    eepromfs.c
+    entrypoint.S
+    exception.c
     graphics.c
+    interrupt.c
+    inthandler.S
+    joybus.c
+    joybusinternal.h
+    mempak.c
+    n64sys.c 
     rdp.c
     regs.S
     rsp.c
-    dma.c
+    rsp_crash.S
+    rtc.c
+    surface.c
+    system.c
     timer.c
-    version.c
-    exception.c
-    do_ctors.c
+    tpak.c
+    usb.c
+    utils.h
 )
 
 foreach(SRC_FILE ${LIBDRAGON_SRCS})
