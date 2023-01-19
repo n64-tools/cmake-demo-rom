@@ -1,0 +1,115 @@
+# This workflow will build the exmple ROM to keep it up-to-date.
+name: Build CMake ROM with docker
+on:
+  push:
+  pull_request:
+
+jobs:
+  cmake-container-build:
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/n64-tools/gcc-toolchain-mips64:latest
+      credentials:
+        username: ${{ github.actor }}
+        password: ${{ secrets.github_token }}
+      volumes:
+        - my_docker_volume:/volume_mount
+
+    steps:
+      - name: Check for dockerenv file
+        run: (ls /.dockerenv && echo Found dockerenv) || (echo No dockerenv)
+
+      - name: Checkout Code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 1 # we only require the last check-in, unless we want to create a changelog.
+
+      - name: Checkout latest libdragon lib Code
+        uses: actions/checkout@v3
+        with:
+          repository: dragonminded/libdragon
+          ref: trunk # NOTE: update this if you want to use a specific branch e.g. `opengl`
+          path: libdragon-build
+          fetch-depth: 1 # we only require the last check-in, unless we want to create a changelog.
+
+      - name: Build libdragon and tools
+        run: |
+          cd libdragon-build
+          make libdragon
+          make tools
+        continue-on-error: true
+
+      # TODO: move to a seperate job?!
+      - name: Generate toolchain
+        run: |
+          mkdir -p toolchain/libdragon/include/
+          cp ./libdragon-build/include/* toolchain/libdragon/include/
+          mkdir -p toolchain/libdragon/lib/
+          cp ./libdragon-build/*.a toolchain/libdragon/lib/
+          mkdir -p toolchain/libdragon/ldscripts/
+          cp ./libdragon-build/*.ld ./toolchain/libdragon/ldscripts/
+          mkdir -p toolchain/libdragon/headers/
+          cp ./libdragon-build/header ./toolchain/libdragon/headers/
+          mkdir -p toolchain/libdragon/tools/
+          cp -r ./libdragon-build/tools/ ./toolchain/libdragon/
+
+          # Clean up the tools.
+          rm -rf ./toolchain/libdragon/tools/*.sh
+          rm -rf ./toolchain/libdragon/tools/Makefile
+          rm -rf ./toolchain/libdragon/tools/*.c
+          rm -rf ./toolchain/libdragon/tools/*.h
+
+          rm -rf ./toolchain/libdragon/tools/mkdfs/Makefile
+          rm -rf ./toolchain/libdragon/tools/mkdfs/*.c
+          rm -rf ./toolchain/libdragon/tools/mkdfs/*.h
+
+          rm -rf ./toolchain/libdragon/tools/dumpdfs/Makefile
+          rm -rf ./toolchain/libdragon/tools/dumpdfs/*.c
+          rm -rf ./toolchain/libdragon/tools/dumpdfs/*.h
+
+          rm -rf ./toolchain/libdragon/tools/audioconv64/Makefile
+          rm -rf ./toolchain/libdragon/tools/audioconv64/*.c
+          rm -rf ./toolchain/libdragon/tools/audioconv64/*.h
+
+          rm -rf ./toolchain/libdragon/tools/mksprite/Makefile
+          rm -rf ./toolchain/libdragon/tools/mksprite/*.c
+          rm -rf ./toolchain/libdragon/tools/mksprite/*.h
+        continue-on-error: true
+
+      # - name: Check directory output
+      #   run: |
+      #     echo 'default directory listing:'
+      #     ls -R .
+      #   continue-on-error: true
+
+      - name: Create ROM output DIR
+        run: |
+          mkdir ./build
+        continue-on-error: true
+          
+      - name: Generate CMake files
+        run: >-
+          cd ./build && cmake -G Ninja
+          -DCMAKE_TOOLCHAIN_FILE=$PWD/../CMake/toolchain.libdragon.cmake
+          -DTOOLCHAIN_PREFIX=$PWD/../toolchain/gcc-toolchain-mips64
+          -DLIBDRAGON_PREFIX=$PWD/../toolchain/libdragon
+          -DHARDWARE_TYPE=FLASHCART
+          -DSDK_TYPE=LIBDRAGON
+          -DCMAKE_MAKE_PROGRAM=ninja
+          $PWD/../
+        continue-on-error: true
+
+      - name: Build ROM using CMake
+        run: |
+          cmake --build ./build --target all --config Release
+        continue-on-error: true
+
+      - name: Publish Build Artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: DOCKER-GENERATED-ROM
+          path: |
+            ./build/*.elf
+            ./build/*.bin
+            ./build/*.v64
+        continue-on-error: true

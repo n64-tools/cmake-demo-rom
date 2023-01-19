@@ -1,5 +1,5 @@
 # This workflow will build the exmple ROM to keep it up-to-date.
-name: Build ROM with CMake
+name: Build CMake ROM with windows
 
 on:
   push:
@@ -73,7 +73,7 @@ jobs:
       - name: Publish Build Artifacts
         uses: actions/upload-artifact@v3
         with:
-          name: ROM
+          name: WIN-NATIVE-GENERATED-ROM
           path: |
             **/build/*.elf
             **/build/*.bin
