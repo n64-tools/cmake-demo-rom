@@ -41,7 +41,7 @@ jobs:
 
       - name: move ld scripts
         run: |
-          mkdir libdragon/ldscripts/
+          mkdir toolchain/libdragon/ldscripts/
           # TODO: use a wildcard!
           mv ./toolchain/libdragon/n64.ld ./toolchain/libdragon/ldscripts/n64.ld
           mv ./toolchain/libdragon/rsp.ld ./toolchain/libdragon/ldscripts/rsp.ld
