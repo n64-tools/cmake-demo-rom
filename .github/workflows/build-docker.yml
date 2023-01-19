@@ -28,6 +28,7 @@ jobs:
         uses: actions/checkout@v3
         with:
           repository: dragonminded/libdragon
+          ref: trunk # NOTE: update this if you want to use a specific branch e.g. `opengl`
           path: libdragon-build
           fetch-depth: 1 # we only require the last check-in, unless we want to create a changelog.
 
@@ -75,11 +76,11 @@ jobs:
           rm -rf ./toolchain/libdragon/tools/mksprite/*.h
         continue-on-error: true
 
-      - name: Check directory output
-        run: |
-          echo 'default directory listing:'
-          ls -R .
-        continue-on-error: true
+      # - name: Check directory output
+      #   run: |
+      #     echo 'default directory listing:'
+      #     ls -R .
+      #   continue-on-error: true
 
       - name: Create ROM output DIR
         run: |
@@ -106,7 +107,7 @@ jobs:
       - name: Publish Build Artifacts
         uses: actions/upload-artifact@v3
         with:
-          name: DOCKER-ROM
+          name: DOCKER-GENERATED-ROM
           path: |
             ./build/*.elf
             ./build/*.bin
