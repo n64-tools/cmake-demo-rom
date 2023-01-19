@@ -14,7 +14,7 @@ jobs:
 
       volumes:
         - my_docker_volume:/volume_mount
-      options: --cpus 1
+      # options: --cpus 1
 
     steps:
       - name: Check for dockerenv file
@@ -25,25 +25,32 @@ jobs:
         with:
           fetch-depth: 1 # we only require the last check-in, unless we want to create a changelog.
 
+      - name: Check directory output
+        run: |
+          echo 'default directory listing:'
+          ls -R .
+        continue-on-error: true
+
       - name: Create ROM output DIR
         run: |
-          mkdir ${{ github.workspace }}/build
+          mkdir ./build
+        continue-on-error: true
           
       - name: Generate CMake files
         run: >-
-          cd ${{ github.workspace }}/build && cmake -G Ninja
-          -DCMAKE_TOOLCHAIN_FILE=${{ github.workspace }}/CMake/toolchain.libdragon.cmake
-          -DTOOLCHAIN_PREFIX=${{ github.workspace }}/toolchain/gcc-toolchain-mips64
-          -DLIBDRAGON_PREFIX=${{ github.workspace }}/toolchain/libdragon
+          cd ./build && cmake -G Ninja
+          -DCMAKE_TOOLCHAIN_FILE=../CMake/toolchain.libdragon.cmake
+          -DTOOLCHAIN_PREFIX=../toolchain/gcc-toolchain-mips64
+          -DLIBDRAGON_PREFIX=../toolchain/libdragon
           -DHARDWARE_TYPE=FLASHCART
           -DSDK_TYPE=LIBDRAGON
           -DCMAKE_MAKE_PROGRAM=ninja
-          ${{ github.workspace }}
+          ..
         continue-on-error: true
 
       - name: Build ROM using CMake
         run: |
-          cmake --build ${{ github.workspace }}/build --target all --config Release
+          cmake --build ./build --target all --config Release
         continue-on-error: true
 
       # - name: Check build output
