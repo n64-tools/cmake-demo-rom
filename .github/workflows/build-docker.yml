@@ -36,15 +36,18 @@ jobs:
         run: |
           cd toolchain/libdragon
           # TODO: we dont need to build the ROMs!
-          ./build.sh libdragon tools
+          make libdragon
+          make tools
         continue-on-error: true
 
       - name: move ld scripts
         run: |
           mkdir toolchain/libdragon/ldscripts/
+          mkdir toolchain/libdragon/headers/
           # TODO: use a wildcard!
           mv ./toolchain/libdragon/n64.ld ./toolchain/libdragon/ldscripts/n64.ld
           mv ./toolchain/libdragon/rsp.ld ./toolchain/libdragon/ldscripts/rsp.ld
+          mv ./toolchain/header ./toolchain/libdragon/headers/header
         continue-on-error: true
 
       - name: Check directory output
