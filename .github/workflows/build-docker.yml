@@ -36,7 +36,7 @@ jobs:
         run: |
           cd toolchain/libdragon
           # TODO: we dont need to build the ROMs!
-          ./build.sh # libdragon tools
+          ./build.sh libdragon tools
         continue-on-error: true
 
       - name: move ld scripts
