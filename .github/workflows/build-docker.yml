@@ -14,7 +14,6 @@ jobs:
 
       volumes:
         - my_docker_volume:/volume_mount
-      # options: --cpus 1
 
     steps:
       - name: Check for dockerenv file
@@ -25,7 +24,7 @@ jobs:
         with:
           fetch-depth: 1 # we only require the last check-in, unless we want to create a changelog.
 
-      - name: Checkout libdragon lib Code
+      - name: Checkout latest libdragon lib Code
         uses: actions/checkout@v3
         with:
           repository: dragonminded/libdragon
@@ -50,7 +49,7 @@ jobs:
           mkdir -p toolchain/libdragon/headers/
           cp ./libdragon-build/header ./toolchain/libdragon/headers/
           mkdir -p toolchain/libdragon/tools/
-          cp -r ./libdragon-build/tools/ ./toolchain/libdragon/tools/
+          cp -r ./libdragon-build/tools/ ./toolchain/libdragon/
           rm -rf ./toolchain/libdragon/tools/*.sh
           rm -rf ./toolchain/libdragon/tools/*.c
           rm -rf ./toolchain/libdragon/tools/Makefile
@@ -83,13 +82,6 @@ jobs:
         run: |
           cmake --build ./build --target all --config Release
         continue-on-error: true
-
-      # - name: Check build output
-      #   run: |
-      #     echo 'build dir listing:'
-      #     cd ${{ github.workspace }}/build
-      #     ls -R .
-      #   continue-on-error: true
 
       - name: Publish Build Artifacts
         uses: actions/upload-artifact@v3
