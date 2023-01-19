@@ -38,7 +38,7 @@ jobs:
           make tools
         continue-on-error: true
 
-      - name: move toolchain
+      - name: Generate toolchain
         run: |
           mkdir -p toolchain/libdragon/include/
           cp ./libdragon-build/include/* toolchain/libdragon/include/
@@ -51,8 +51,13 @@ jobs:
           mkdir -p toolchain/libdragon/tools/
           cp -r ./libdragon-build/tools/ ./toolchain/libdragon/
           rm -rf ./toolchain/libdragon/tools/*.sh
-          rm -rf ./toolchain/libdragon/tools/*.c
           rm -rf ./toolchain/libdragon/tools/Makefile
+          rm -rf ./toolchain/libdragon/tools/*.c
+          rm -rf ./toolchain/libdragon/tools/mkdfs/*.c
+          rm -rf ./toolchain/libdragon/tools/dumpdfs/*.c
+          rm -rf ./toolchain/libdragon/tools/audioconv64/*.c
+          rm -rf ./toolchain/libdragon/tools/mksprite/*.c
+          rm -rf ./toolchain/libdragon/tools/mksprite/*.c
         continue-on-error: true
 
       - name: Check directory output
