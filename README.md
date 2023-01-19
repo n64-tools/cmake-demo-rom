@@ -1,5 +1,6 @@
 # cmake-demo-rom
 Generates a ROM built with CMake
+This uses the https://github.com/DragonMinded/libdragon/tree/trunk/examples/vtest rom as a sample.
 
 Requirements:
 * Turning on Windows 10 or 11 developer mode Or Windows 7 with latest PowerShell version installed
