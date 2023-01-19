@@ -1,5 +1,5 @@
 # This workflow will build the exmple ROM to keep it up-to-date.
-name: Build ROM with CMake
+name: Build CMake ROM with windows
 
 on:
   push:

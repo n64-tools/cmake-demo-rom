@@ -1,17 +1,17 @@
-name: docker build
+# This workflow will build the exmple ROM to keep it up-to-date.
+name: Build CMake ROM with docker
 on:
   push:
   pull_request:
 
 jobs:
-  cmake-container-test-build:
+  cmake-container-build:
     runs-on: ubuntu-latest
     container:
       image: ghcr.io/n64-tools/gcc-toolchain-mips64:latest
       credentials:
         username: ${{ github.actor }}
         password: ${{ secrets.github_token }}
-
       volumes:
         - my_docker_volume:/volume_mount
 
@@ -38,6 +38,7 @@ jobs:
           make tools
         continue-on-error: true
 
+      # TODO: move to a seperate job?!
       - name: Generate toolchain
         run: |
           mkdir -p toolchain/libdragon/include/
@@ -74,11 +75,11 @@ jobs:
           rm -rf ./toolchain/libdragon/tools/mksprite/*.h
         continue-on-error: true
 
-      # - name: Check directory output
-      #   run: |
-      #     echo 'default directory listing:'
-      #     ls -R .
-      #   continue-on-error: true
+      - name: Check directory output
+        run: |
+          echo 'default directory listing:'
+          ls -R .
+        continue-on-error: true
 
       - name: Create ROM output DIR
         run: |
