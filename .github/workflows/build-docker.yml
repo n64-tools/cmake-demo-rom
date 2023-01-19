@@ -41,7 +41,7 @@ jobs:
       - name: move ld scripts
         run: |
           mkdir libdragon/ldscripts
-          mv libdragon/*.ld ldscripts/*
+          mv libdragon/*.ld libdragon/ldscripts/*
         continue-on-error: true
 
       - name: Check directory output
