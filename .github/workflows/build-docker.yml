@@ -37,6 +37,8 @@ jobs:
           echo 'default directory listing:'
           cd libdragon
           ./build.sh
+          mkdir ldscripts
+          cp *.ld ldscripts/
         continue-on-error: true
 
       - name: Check directory output
@@ -79,7 +81,7 @@ jobs:
         with:
           name: ROM
           path: |
-            **/build/*.elf
-            **/build/*.bin
-            **/build/*.v64
+            ./build/*.elf
+            ./build/*.bin
+            ./build/*.v64
         continue-on-error: true
