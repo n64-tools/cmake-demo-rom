@@ -50,21 +50,35 @@ jobs:
           cp ./libdragon-build/header ./toolchain/libdragon/headers/
           mkdir -p toolchain/libdragon/tools/
           cp -r ./libdragon-build/tools/ ./toolchain/libdragon/
+
+          # Clean up the tools.
           rm -rf ./toolchain/libdragon/tools/*.sh
           rm -rf ./toolchain/libdragon/tools/Makefile
           rm -rf ./toolchain/libdragon/tools/*.c
+          rm -rf ./toolchain/libdragon/tools/*.h
+
+          rm -rf ./toolchain/libdragon/tools/mkdfs/Makefile
           rm -rf ./toolchain/libdragon/tools/mkdfs/*.c
+          rm -rf ./toolchain/libdragon/tools/mkdfs/*.h
+
+          rm -rf ./toolchain/libdragon/tools/dumpdfs/Makefile
           rm -rf ./toolchain/libdragon/tools/dumpdfs/*.c
+          rm -rf ./toolchain/libdragon/tools/dumpdfs/*.h
+
+          rm -rf ./toolchain/libdragon/tools/audioconv64/Makefile
           rm -rf ./toolchain/libdragon/tools/audioconv64/*.c
+          rm -rf ./toolchain/libdragon/tools/audioconv64/*.h
+
+          rm -rf ./toolchain/libdragon/tools/mksprite/Makefile
           rm -rf ./toolchain/libdragon/tools/mksprite/*.c
-          rm -rf ./toolchain/libdragon/tools/mksprite/*.c
+          rm -rf ./toolchain/libdragon/tools/mksprite/*.h
         continue-on-error: true
 
-      - name: Check directory output
-        run: |
-          echo 'default directory listing:'
-          ls -R .
-        continue-on-error: true
+      # - name: Check directory output
+      #   run: |
+      #     echo 'default directory listing:'
+      #     ls -R .
+      #   continue-on-error: true
 
       - name: Create ROM output DIR
         run: |
