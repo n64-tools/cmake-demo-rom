@@ -34,11 +34,14 @@ jobs:
 
       - name: Build libdragon and tools
         run: |
-          echo 'default directory listing:'
           cd libdragon
           ./build.sh
-          mkdir ldscripts
-          cp *.ld ldscripts/
+        continue-on-error: true
+
+      - name: move ld scripts
+        run: |
+          mkdir libdragon/ldscripts
+          mv libdragon/*.ld ldscripts/*
         continue-on-error: true
 
       - name: Check directory output
