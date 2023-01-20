@@ -52,7 +52,7 @@ jobs:
           -DCMAKE_TOOLCHAIN_FILE=${{ github.workspace }}/CMake/toolchain.libdragon.cmake
           -DTOOLCHAIN_PREFIX=${{ github.workspace }}/toolchain/gcc-toolchain-mips64
           -DLIBDRAGON_PREFIX=${{ github.workspace }}/toolchain/libdragon
-          -DHARDWARE_TYPE=FLASHCART
+          -DHARDWARE_TYPE=ALL
           -DSDK_TYPE=LIBDRAGON
           -DCMAKE_MAKE_PROGRAM=${{ github.workspace }}/tools/ninja.exe
           ${{ github.workspace }}

@@ -13,4 +13,7 @@ _deps
 /toolchain/
 /build/
 /tools/
+/temp/
+/out/
+.vs/
 

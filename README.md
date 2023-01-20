@@ -15,13 +15,12 @@ Requirements:
 ![Required VSCode Extensions](docs/images/vscode-extensions.png)
 
 * Run `UpdateToolchain.ps1` to download the required toolchain and libdragon files
-* Adjust .vscode/cmake-variants.json for your paths if necessary (although should work automatically out the box)
+* Adjust CMakePresets.json for your paths if necessary (although should work automatically out the box)
 * Adjust .vscode/settings.json for your paths (although should work automatically out the box)
 
 Building the ROM:
 In VS-Code
-* Click on the Bottom bar to set the "build variant": ![CMake variant](docs/images/vscode-set-variant.png)
-* Use any kit e.g. "Unspecified" (as this is handled by Ninja-Build)
+* Click on the Bottom bar to set the "Configure Preset": ![CMake variant](docs/images/vscode-set-variant.png)
 * Hit F7 to build the ROM
 
 ### Docker

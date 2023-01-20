@@ -1,0 +1,61 @@
+{
+    "version": 4,
+    "cmakeMinimumRequired": {
+        "major": 3,
+        "minor": 23,
+        "patch": 0
+    },
+    "configurePresets": [
+        {
+            "name": "general-preset",
+            "displayName": "Set Variables",
+            "description": "Sets ROM and libdragon SDK variables",
+            "hidden": true,
+            "cacheVariables": {
+                "SDK_TYPE": "LIBDRAGON",
+                "HARDWARE_TYPE" : "ALL",
+                "HARDWARE_REVISION" : "0",
+                "BUILD_VERSION" : "0.0.1",
+                "CMAKE_TOOLCHAIN_FILE": "${sourceDir}/CMake/toolchain.libdragon.cmake",
+                "TOOLCHAIN_PREFIX": "${sourceDir}/toolchain/gcc-toolchain-mips64",
+                "LIBDRAGON_PREFIX": "${sourceDir}/toolchain/libdragon"
+            }
+        },
+        {
+            "name": "release-rom",
+            "displayName": "libdragon Release ROM",
+            "description": "Builds ROM using libdragon SDK",
+            "generator": "Ninja",
+            "binaryDir": "${sourceDir}/build/${presetName}",
+            "inherits": [
+                "general-preset"
+            ],
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Release"
+            }
+        },
+        {
+            "name": "debug-rom",
+            "displayName": "libdragon Debug ROM",
+            "description": "Builds Debug ROM using libdragon SDK",
+            "generator": "Ninja",
+            "binaryDir": "${sourceDir}/build/${presetName}",
+            "inherits": [
+                "general-preset"
+            ],
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug"
+            }
+        }
+    ],
+    "buildPresets": [
+        {
+            "name": "Debug",
+            "configurePreset": "debug-rom"
+        },
+        {
+            "name": "Release",
+            "configurePreset": "release-rom"
+        }
+    ]
+}

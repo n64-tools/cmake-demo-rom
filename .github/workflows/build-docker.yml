@@ -93,7 +93,7 @@ jobs:
           -DCMAKE_TOOLCHAIN_FILE=$PWD/../CMake/toolchain.libdragon.cmake
           -DTOOLCHAIN_PREFIX=$PWD/../toolchain/gcc-toolchain-mips64
           -DLIBDRAGON_PREFIX=$PWD/../toolchain/libdragon
-          -DHARDWARE_TYPE=FLASHCART
+          -DHARDWARE_TYPE=ALL
           -DSDK_TYPE=LIBDRAGON
           -DCMAKE_MAKE_PROGRAM=ninja
           $PWD/../
