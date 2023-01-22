@@ -1,0 +1,17 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "ares-emulator",
+            "command": "${workspaceFolder}/tools/ares-windows-msvc-x64/ares-v131/ares",
+            "args": ["${workspaceFolder}/build/debug-rom/BUILD-DEMO.z64"],
+            "type": "shell"
+        },
+        {
+            "label": "ed64-usb",
+            "command": "${workspaceFolder}/tools/ed64-usb/usbtool",
+            "args": ["${workspaceFolder}/build/debug-rom/BUILD-DEMO.z64"],
+            "type": "shell"
+        }
+    ]
+}

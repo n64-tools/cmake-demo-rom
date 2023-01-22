@@ -26,3 +26,9 @@ In VS-Code
 ### Docker
 See the current [docker workflow file](.github/workflows/build-docker.yml) for how you can do it.
 By default, this build references the `trunk` branch. To change it, adjust the `ref: trunk` for the checkout.
+
+## Launching ROM
+
+### Windows with VSCode
+Uses `launch.json` via `tasks.json` contained in the `.vscode` folder.
+By default the applications are not installed and the paths will require updating.
