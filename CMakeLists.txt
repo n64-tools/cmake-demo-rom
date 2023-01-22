@@ -69,7 +69,7 @@ target_link_directories( ${ELF_NAME}
 )
 
 set_target_properties( ${ELF_NAME} 
-	PROPERTIES LINK_FLAGS "-T ${LINKER_FILE_NAME}"
+	PROPERTIES LINK_FLAGS "-T${LINKER_FILE_NAME}"
 	) 
 
 add_custom_command(TARGET ${ELF_NAME}
