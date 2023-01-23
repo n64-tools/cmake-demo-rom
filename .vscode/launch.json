@@ -4,14 +4,14 @@
         {
             "name": "Launch debug ROM on ares Emulator",
             "type": "node",
-            "request": "launch",
-            "preLaunchTask": "ares-emulator", // The name of the task defined above
+            "request": "attach", // uses attach rather than launch so that it closes autmatically.
+            "preLaunchTask": "ares-emulator", // Called in tasks.json
         },
         {
             "name": "Launch debug ROM on ED64 via USB",
             "type": "node",
-            "request": "launch",
-            "preLaunchTask": "ed64-usb", // The name of the task defined above
+            "request": "attach",
+            "preLaunchTask": "ed64-usb", // Called in tasks.json
         }
     ]
 }

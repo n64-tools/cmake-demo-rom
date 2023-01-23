@@ -146,8 +146,8 @@ int main(void)
 		color = graphics_make_color(0x00, 0x00, 0x00, 0xFF);
 		graphics_set_color(color, 0);
 
-		// TODO: print line showing build version
-		// TODO: print line showing whether ROM is debug
+		// TODO: print line showing build version.
+		// TODO: print line showing whether ROM is debug.
 		// TODO: print line showing H/W and H/W Rev vars.
         printText(_dc, "Video Resolution Test", width[res]/16 - 10, 3);
 		switch (res)
