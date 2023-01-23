@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.15)
+cmake_minimum_required(VERSION 3.23)
 
 include(CMakeToolsHelpers OPTIONAL)
 include(ExternalProject)
@@ -79,6 +79,13 @@ add_custom_command(TARGET ${ELF_NAME}
 					  
 #if the toolchain is different, we need to handle it here, or push it to a module, or even the toolchain?!
 if(TOOLCHAIN_LIBDRAGON)
+
+# FIXME: There is a regression with N64-Tool where it cannot overwrite an existing file.
+# This command is a workaround:
+add_custom_command(TARGET ${ELF_NAME}
+                  POST_BUILD #Make sure your ROM size is big enough... perhaps we could use "size" on the bin to check?
+                  COMMAND DEL -F ${ROM_NAME}
+				  )
 
 add_custom_command(TARGET ${ELF_NAME}
                   POST_BUILD #Make sure your ROM size is big enough... perhaps we could use "size" on the bin to check?

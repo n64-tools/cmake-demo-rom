@@ -65,7 +65,7 @@ set(MCPU_FLAGS "-march=vr4300 -mtune=vr4300")
 set(EXTRA_FLAGS "-falign-functions=32 -ffunction-sections -fdata-sections")
 
 set(CMAKE_C_CXX_FLAGS "${MCPU_FLAGS} ${EXTRA_FLAGS} -Wall -Werror -Wno-error=deprecated-declarations -fdiagnostics-color=always")
-set(CMAKE_C_CXX_FLAGS_DEBUG   "-O0 -g -ggdb3")
+set(CMAKE_C_CXX_FLAGS_DEBUG   "-O0 -g3") # TODO: -ggdb3
 set(CMAKE_C_CXX_FLAGS_RELEASE "-O2") 
 
 set(CMAKE_C_FLAGS "${CMAKE_C_CXX_FLAGS}" CACHE INTERNAL "c compiler flags")
