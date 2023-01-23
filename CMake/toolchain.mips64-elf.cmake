@@ -62,7 +62,9 @@ set(CMAKE_TRY_COMPILE_TARGET_TYPE STATIC_LIBRARY)
 # set the flags for an N64's architecture
 set(MCPU_FLAGS "-march=vr4300 -mtune=vr4300")
 
-set(CMAKE_C_CXX_FLAGS "${MCPU_FLAGS} -mno-long-calls -Wall -Wno-pointer-sign")
+set(EXTRA_FLAGS "-falign-functions=32 -ffunction-sections -fdata-sections")
+
+set(CMAKE_C_CXX_FLAGS "${MCPU_FLAGS} ${EXTRA_FLAGS} -Wall -Werror -Wno-error=deprecated-declarations -fdiagnostics-color=always")
 set(CMAKE_C_CXX_FLAGS_DEBUG   "-O0 -g -ggdb3")
 set(CMAKE_C_CXX_FLAGS_RELEASE "-O2") 
 
@@ -74,7 +76,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_C_CXX_FLAGS}" CACHE INTERNAL "cxx compiler flags")
 set(CMAKE_CXX_FLAGS_DEBUG   "${CMAKE_C_CXX_FLAGS_DEBUG}" )
 set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_C_CXX_FLAGS_RELEASE}" )
 
-set(CMAKE_ASM_FLAGS "${MCPU_FLAGS}" CACHE INTERNAL "asm compiler flags")
+set(CMAKE_ASM_FLAGS "${MCPU_FLAGS} -Wa,--fatal-warnings" CACHE INTERNAL "asm compiler flags")
 set(CMAKE_ASM_FLAGS_DEBUG   "" )
 set(CMAKE_ASM_FLAGS_RELEASE "" )
 
