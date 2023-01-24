@@ -22,6 +22,9 @@ set(AUDIOCONV_TOOL      ${LIBDRAGON_PREFIX}/tools/audioconv64/audioconv64)
 set(MKSPRITE_TOOL       ${LIBDRAGON_PREFIX}/tools/mksprite/mksprite)
 set(MKSPRITECONV_TOOL   ${LIBDRAGON_PREFIX}/tools/mksprite/convtool)
 
+
+set(RSP_ASFLAGS             "-march=mips1 -mabi=32 -Wa,--fatal-warnings") # TODO: add to compile
+
 set(LINKER_FLAGS_START		"-ldragon")
 set(LINKER_FLAGS_END		"-ldragonsys -Wl,--gc-sections -Wl,--wrap __do_global_ctors")
 

@@ -5,16 +5,34 @@ include(ExternalProject)
 
 set(CMAKE_VERBOSE_MAKEFILE ON CACHE BOOL "ON" FORCE) # debug helper
 
+message(STATUS "\n\nINFO: Running CMake ${CMAKE_VERSION}\n\n")
+
 # the following prevents launching a build in the source tree
 set(CMAKE_DISABLE_SOURCE_CHANGES ON)
 set(CMAKE_DISABLE_IN_SOURCE_BUILD ON)
 
-message(STATUS "Building for hardware: ${HARDWARE_TYPE} with SDK: ${SDK_TYPE}")
+# fatal error and message explaining this
+if (CMAKE_SOURCE_DIR STREQUAL CMAKE_BINARY_DIR)
+    message(STATUS "\n-- ###############################################\n")
+    message(STATUS "Please run the build outside of the source tree.\n\n")
+    message(STATUS "Hint: create a 'build' folder and run CMake from there..")
+    message(STATUS "###############################################\n\n")
+    message(FATAL_ERROR "Build launched in the source tree.")
+endif()
+
+# set time stamp of build
+string(TIMESTAMP BUILD_TIMESTAMP UTC)
+
+message(STATUS "Building for hardware type: ${HARDWARE_TYPE}")
+message(STATUS "Using SDK: ${SDK_TYPE}")
 
 # make sure the version is set
 if(NOT BUILD_VERSION)
 	set(BUILD_VERSION 0.0.1)
 endif()
+
+message(STATUS "ROM version is: ${BUILD_VERSION}")
+message(STATUS "Tweek Timestamp is: ${BUILD_TIMESTAMP}")
 
 string(REPLACE "." ";" VERSION_LIST ${BUILD_VERSION})
 list(GET VERSION_LIST 0 BUILD_VER_MAJOR)
@@ -43,12 +61,14 @@ target_compile_definitions( ${ELF_NAME} PUBLIC
 	ROM_VER_MAJOR=${BUILD_VER_MAJOR}
 	ROM_VER_MINOR=${BUILD_VER_MINOR}
 	ROM_VER_REV=${BUILD_VER_REV}
+	ROM_VER_TWEEK=${BUILD_TIMESTAMP}
 	FLASHCART_TARGET_TYPE=${HARDWARE_TYPE}
 	FLASHCART_TARGET_REVISION=${HARDWARE_REVISION}
 )
 
 target_sources( ${ELF_NAME}
 PUBLIC
+	# Add your source files here:
 	${CMAKE_CURRENT_LIST_DIR}/src/main.c
 )
 
