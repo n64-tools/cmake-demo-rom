@@ -7,3 +7,6 @@
 #ifndef ROM_VER_REVISION
 #define 	ROM_VER_REVISION    1
 #endif
+#ifndef ROM_VER_TWEEK
+#define 	ROM_VER_TWEEK       0
+#endif

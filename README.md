@@ -21,8 +21,15 @@ Requirements:
 Building the ROM:
 In VS-Code
 * Click on the Bottom bar to set the "Configure Preset": ![CMake variant](docs/images/vscode-set-variant.png)
-* Hit F7 to build the ROM
+* Hit `F7` to build the ROM
 
 ### Docker
 See the current [docker workflow file](.github/workflows/build-docker.yml) for how you can do it.
 By default, this build references the `trunk` branch. To change it, adjust the `ref: trunk` for the checkout.
+
+## Launching ROM
+
+### Windows with VSCode
+Uses `launch.json` via `tasks.json` contained in the `.vscode` folder.
+NOTE: By default the applications are not installed and the paths will require updating.
+Hit `F5` to load the ROM (once built).

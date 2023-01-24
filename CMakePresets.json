@@ -51,11 +51,15 @@
     "buildPresets": [
         {
             "name": "Debug",
-            "configurePreset": "debug-rom"
+            "configurePreset": "debug-rom",
+            "verbose": true,
+            "cleanFirst": true
         },
         {
             "name": "Release",
-            "configurePreset": "release-rom"
+            "configurePreset": "release-rom",
+            "verbose": true,
+            "cleanFirst": true
         }
     ]
 }
