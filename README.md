@@ -31,6 +31,5 @@ By default, this build references the `trunk` branch. To change it, adjust the `
 
 ### Windows with VSCode
 Uses `launch.json` via `tasks.json` contained in the `.vscode` folder.
-NOTE1: By default the applications are not installed and the paths will require updating.
-NOTE2: By default only the debug ROM will be launched.
-Hit `F5` to load the ROM.
+NOTE: By default the applications are not installed and the paths will require updating.
+Hit `F5` to load the ROM (once built).
