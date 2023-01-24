@@ -60,7 +60,7 @@ set(CMAKE_FIND_ROOT_PATH_MODE_PACKAGE ONLY)
 set(CMAKE_TRY_COMPILE_TARGET_TYPE STATIC_LIBRARY)
 
 # set the flags for an N64's architecture
-set(MCPU_FLAGS "-march=vr4300 -mtune=vr4300")
+set(MCPU_FLAGS "-march=vr4300 -mtune=vr4300 -MMD")
 
 set(EXTRA_FLAGS "-falign-functions=32 -ffunction-sections -fdata-sections")
 
@@ -68,7 +68,7 @@ set(CMAKE_C_CXX_FLAGS "${MCPU_FLAGS} ${EXTRA_FLAGS} -Wall -Werror -Wno-error=dep
 set(CMAKE_C_CXX_FLAGS_DEBUG   "-O0 -g3") # TODO: -ggdb3
 set(CMAKE_C_CXX_FLAGS_RELEASE "-O2") 
 
-set(CMAKE_C_FLAGS "${CMAKE_C_CXX_FLAGS}" CACHE INTERNAL "c compiler flags")
+set(CMAKE_C_FLAGS "${CMAKE_C_CXX_FLAGS} -std=gnu99" CACHE INTERNAL "c compiler flags")
 set(CMAKE_C_FLAGS_DEBUG   "${CMAKE_C_CXX_FLAGS_DEBUG}" )
 set(CMAKE_C_FLAGS_RELEASE " ${CMAKE_C_CXX_FLAGS_RELEASE}" )
 
@@ -77,7 +77,7 @@ set(CMAKE_CXX_FLAGS_DEBUG   "${CMAKE_C_CXX_FLAGS_DEBUG}" )
 set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_C_CXX_FLAGS_RELEASE}" )
 
 set(CMAKE_ASM_FLAGS "${MCPU_FLAGS} -Wa,--fatal-warnings" CACHE INTERNAL "asm compiler flags")
-set(CMAKE_ASM_FLAGS_DEBUG   "" )
+set(CMAKE_ASM_FLAGS_DEBUG   "-g" )
 set(CMAKE_ASM_FLAGS_RELEASE "" )
 
-set(CMAKE_EXE_LINKER_FLAGS "-G0 ${LINKER_FLAGS_START} -lc -lm ${LINKER_FLAGS_END}" CACHE INTERNAL "exe link flags")
+set(CMAKE_EXE_LINKER_FLAGS "-g ${LINKER_FLAGS_START} -lc -lm ${LINKER_FLAGS_END}" CACHE INTERNAL "exe link flags")

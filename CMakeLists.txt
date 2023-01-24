@@ -80,12 +80,12 @@ add_custom_command(TARGET ${ELF_NAME}
 # if the toolchain is different, we need to handle it here, or push it to a module, or even the toolchain?!
 if(TOOLCHAIN_LIBDRAGON)
 
-# FIXME: There is a regression with N64-Tool where it cannot overwrite an existing file.
-# This command is a workaround:
-add_custom_command(TARGET ${ELF_NAME}
-                  POST_BUILD # Delete the ROM file so it can be overwritten by N64Tool
-                  COMMAND DEL -F ${ROM_NAME}
-				  )
+# # FIXME: There is a regression with N64-Tool where it cannot overwrite an existing file.
+# # This command is a workaround:
+# add_custom_command(TARGET ${ELF_NAME}
+#                   POST_BUILD # Delete the ROM file so it can be overwritten by N64Tool
+#                   COMMAND DEL -F ${ROM_NAME}
+# 				  )
 
 add_custom_command(TARGET ${ELF_NAME}
                   POST_BUILD # Make sure your ROM size is big enough... perhaps we could use "size" on the bin to check?
